@@ -25,7 +25,7 @@ defineProps({
                 <h1 class="p-8 bg-gray-800 rounded-xl">
                     <span class="text-red-300">{{ time }}</span>
                 </h1>
-                <navLinks page="/home" preserve-scroll
+                <navLinks page="home" preserve-scroll
                     >Refresh
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

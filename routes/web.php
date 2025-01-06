@@ -4,23 +4,24 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Auth/Login',[
-        'name' => 'Definotlee', 
+    return Inertia::render('Auth/Login', [
+        'name' => 'Definotlee',
         'subject_ni_lee' => [
-            'sub1','sub2','sub3'
+            'sub1',
+            'sub2',
+            'sub3'
         ]
     ]);
 });
 
-Route::get('/home',function (){
-    // sleep(2);
-    return Inertia::render('Views/Home',[
+Route::get('/home', function () {
+    return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
     ]);
 })->name('home');
 
-Route::get('/welcome',function (){
-    return Inertia::render('Views/Welcome',[
+Route::get('/welcome', function() {
+    return Inertia::render('Views/Welcome', [
         'name' => 'Definotlee',
         'subject_ni_lee' => [
             'sub1','sub2','sub3'
@@ -28,6 +29,6 @@ Route::get('/welcome',function (){
     ]);
 })->name('welcome');
 
-Route::post('/logout',function (){
+Route::post('/logout', function () {
     return Inertia::render('Auth/Login');
 });
