@@ -12,6 +12,7 @@ defineProps({
       
     </Head>
     <div>
+      <span>Welcome {{ $page.props.auth.user.username }}</span>
         <header>
             <!-- Render the "pagename" slot if provided -->
             <slot name="pagename"></slot>

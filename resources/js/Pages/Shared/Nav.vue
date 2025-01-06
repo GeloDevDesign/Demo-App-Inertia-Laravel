@@ -1,9 +1,17 @@
 <script setup>
+import { ref, computed } from "vue";
 import navLink from "../Components/navLink.vue";
+import { usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+
+const showLayout = computed(() => {
+    return page.props.auth.user.username 
+});
 </script>
 
 <template>
-    <section class="navbar bg-base-100">
+    <section v-if="showLayout" class="navbar bg-base-100">
         <div class="navbar-start">
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -49,13 +57,23 @@ import navLink from "../Components/navLink.vue";
                         >Welcome</navLink
                     >
                 </li>
+
                 <li>
-                    <navLink page="/">Home</navLink>
+                    <navLink page="/welcome" componenName="/welcome"
+                        >Welcome</navLink
+                    >
                 </li>
+               
             </ul>
         </div>
         <div class="navbar-end">
-               <Link href="/logout" method="POST" as="button" class="btn btn-neutral">Logout</Link>
+            <Link
+                href="/logout" 
+                method="POST"
+                as="button"
+                class="btn btn-neutral"
+                >Logout</Link
+            >
         </div>
     </section>
 </template>

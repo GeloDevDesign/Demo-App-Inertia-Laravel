@@ -13,7 +13,7 @@ const showLayout = computed(() => {
 
 <template>
     <section class="p-6">
-        <header v-if="showLayout">
+        <header >
             <Nav />
         </header>
 

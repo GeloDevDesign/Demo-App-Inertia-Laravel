@@ -13,6 +13,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home',function (){
+    // sleep(2);
     return Inertia::render('Views/Home',[
         'time' => now()->toTimeString()
     ]);
