@@ -8,15 +8,16 @@ defineProps({
     time: String,
 });
 
-layout:Layout
 
 
 </script>
 
 <template>
-    
+ <Head title="Home Page">
+   
+ </Head>
+
         <div class="flex h-full">
-           
             <div
                 class="flex w-full h-full justify-center items-center flex-col gap-2"
             >

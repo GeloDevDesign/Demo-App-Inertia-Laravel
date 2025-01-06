@@ -6,17 +6,19 @@ import Layout from "../Shared/Layout.vue";
 defineProps({
     time: String,
 });
-
 </script>
 <template>
+    <Head title="Welcome">
+      
+    </Head>
     <div>
-      <header>
-        <!-- Render the "pagename" slot if provided -->
-        <slot name="pagename"></slot>
-      </header>
-      <main>
-        <!-- Render the default slot content -->
-        <slot></slot>
-      </main>
+        <header>
+            <!-- Render the "pagename" slot if provided -->
+            <slot name="pagename"></slot>
+        </header>
+        <main>
+            <!-- Render the default slot content -->
+            <slot></slot>
+        </main>
     </div>
-  </template>
+</template>

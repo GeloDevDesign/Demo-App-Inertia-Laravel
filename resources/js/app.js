@@ -7,22 +7,19 @@ import { createPinia } from "pinia";
 import { router } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 import Layout from "./Pages/Shared/Layout.vue";
-import Login from "./Pages/Auth/Login.vue";
 
 const pinia = createPinia();
 router.on("start", () => NProgress.start());
 router.on("finish", () => NProgress.done());
 
 createInertiaApp({
+    title: title => title ? `${title} - My App` : 'My App',
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         let page = pages[`./Pages/${name}.vue`];
 
-        if (Layout === undefined) {
-            page.default.layout 
-        } else {
-            page.default.layout  = Layout
-        }
+        page.default.layout =
+            page.default.layout === undefined ? Layout : page.default.layout;
 
         return page;
     },
@@ -34,7 +31,6 @@ createInertiaApp({
             .component("Link", Link);
         app.mount(el);
     },
-
     progress: {
         delay: 50,
         color: "#29d",

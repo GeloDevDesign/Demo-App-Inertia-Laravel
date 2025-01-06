@@ -5,7 +5,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Auth/Login',[
-        'name' => 'Definotlee',
+        'name' => 'Definotlee', 
         'subject_ni_lee' => [
             'sub1','sub2','sub3'
         ]
@@ -28,6 +28,5 @@ Route::get('/welcome',function (){
 });
 
 Route::post('/logout',function (){
-    // return dd('user has been logout ');
     return Inertia::render('Auth/Login');
 });

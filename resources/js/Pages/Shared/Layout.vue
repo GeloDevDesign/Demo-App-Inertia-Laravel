@@ -1,24 +1,30 @@
 <script setup>
 import Nav from "./Nav.vue";
-</script>
+import { ref, computed } from "vue";
+import { usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+
+const showLayout = computed(() => {
+    return page.props.auth.user.username === "Angelo";
+});
+
+</script> 
 
 <template>
-   
-        <section class="p-6">
-            <header>
-                <Nav />
-            </header>
+    <section class="p-6">
+        <header v-if="showLayout">
+            <Nav />
+        </header>
 
-            <span>Welcome Back {{ $page.props.auth.user.username }}</span>
+        <div>
+          
+            <slot name="pagename"></slot>
+        </div>
 
-            <div>
-                <slot name="pagename"></slot>
-            </div>
-
-            <div>
-                <slot />
-            </div>
-       
-        </section>
-  
+        <div>
+            <!-- <span>Welcome Back {{ $page.props.auth.user.username }}</span>   -->
+            <slot />
+        </div>
+    </section>
 </template>
