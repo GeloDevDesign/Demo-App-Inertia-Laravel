@@ -1,6 +1,6 @@
 <script setup>
 
-defineProps({
+const props = defineProps({
     page: String,
     componenName: String
 });
@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <Link class="btn " data-inertia-link data-inertia-prefetch  :href="page" :class="$page.url.startsWith(componenName) ? 'btn-primary': 'btn-ghost'">
+    <Link class="btn " data-inertia-link data-inertia-prefetch  :href="route(props.page)" :class="$page.url.startsWith(componenName) ? 'btn-primary': 'btn-ghost'">
         <slot/>
     </Link>
 </template>

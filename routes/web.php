@@ -17,7 +17,7 @@ Route::get('/home',function (){
     return Inertia::render('Views/Home',[
         'time' => now()->toTimeString()
     ]);
-});
+})->name('home');
 
 Route::get('/welcome',function (){
     return Inertia::render('Views/Welcome',[
@@ -26,7 +26,7 @@ Route::get('/welcome',function (){
             'sub1','sub2','sub3'
         ]
     ]);
-});
+})->name('welcome');
 
 Route::post('/logout',function (){
     return Inertia::render('Auth/Login');

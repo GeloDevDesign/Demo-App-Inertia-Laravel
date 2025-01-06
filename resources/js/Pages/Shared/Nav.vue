@@ -6,7 +6,7 @@ import { usePage } from "@inertiajs/vue3";
 const page = usePage();
 
 const showLayout = computed(() => {
-    return page.props.auth.user.username 
+    return page.props.auth.user.username;
 });
 </script>
 
@@ -50,25 +50,18 @@ const showLayout = computed(() => {
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li>
-                    <navLink page="/home" componenName="/home">Home</navLink>
+                    <navLink page="home" componenName="/home">Home</navLink>
                 </li>
                 <li>
-                    <navLink page="/welcome" componenName="/welcome"
+                    <navLink page="welcome" componenName="/welcome"
                         >Welcome</navLink
                     >
                 </li>
-
-                <li>
-                    <navLink page="/welcome" componenName="/welcome"
-                        >Welcome</navLink
-                    >
-                </li>
-               
             </ul>
         </div>
         <div class="navbar-end">
             <Link
-                href="/logout" 
+                href="/logout"
                 method="POST"
                 as="button"
                 class="btn btn-neutral"

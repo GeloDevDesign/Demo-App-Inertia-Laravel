@@ -7,13 +7,14 @@ import { createPinia } from "pinia";
 import { router } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 import Layout from "./Pages/Shared/Layout.vue";
+import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 
 const pinia = createPinia();
 router.on("start", () => NProgress.start());
 router.on("finish", () => NProgress.done());
 
 createInertiaApp({
-    title: title => title ? `${title} - My App` : 'My App',
+    title: (title) => (title ? `${title} - My App` : "My App"),
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         let page = pages[`./Pages/${name}.vue`];
@@ -27,6 +28,7 @@ createInertiaApp({
         const app = createApp({ render: () => h(App, props) });
         app.use(plugin)
             .use(pinia)
+            .use(ZiggyVue)
             .component("Head", Head)
             .component("Link", Link);
         app.mount(el);
