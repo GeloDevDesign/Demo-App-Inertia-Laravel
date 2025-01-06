@@ -14,7 +14,6 @@ import { Link } from '@inertiajs/vue3'
                 molestias.
             </p>
             <Link href="/home" class="btn btn-primary">Login</Link>
-        
         </div>
     </div>
 </template>

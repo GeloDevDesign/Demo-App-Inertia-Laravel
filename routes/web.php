@@ -28,5 +28,6 @@ Route::get('/welcome',function (){
 });
 
 Route::post('/logout',function (){
+    // return dd('user has been logout ');
     return Inertia::render('Auth/Login');
 });
