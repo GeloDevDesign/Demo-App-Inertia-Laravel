@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import navLink from "../Components/navLink.vue";
 
 defineOptions({
     layout: null,
@@ -22,7 +23,14 @@ defineOptions({
                 a aut molestias repellendus a aut mole stias repellendus a aut
                 molestias.
             </p>
-            <Link href="/home" class="btn btn-primary">Login</Link>
+             
+            <navLink  page="home"
+                >Login</navLink
+            >
+           
+            <navLink method="POST" as="button" page="register"
+                >Register</navLink
+            >
         </div>
     </div>
 </template>

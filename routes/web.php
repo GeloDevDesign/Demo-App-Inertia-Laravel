@@ -4,14 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Auth/Login', [
-        'name' => 'Definotlee',
-        'subject_ni_lee' => [
-            'sub1',
-            'sub2',
-            'sub3'
-        ]
-    ]);
+    return Inertia::render('Auth/Login');
 });
 
 // 'users' => User::all()->map(function ($user) {
@@ -24,19 +17,22 @@ Route::get('/', function () {
 // }); 
 
 
+Route::post('/register', function () {
+    return Inertia::render('Auth/Register', [
+        'time' => now()->toTimeString()
+    ]);
+})->name('register');
+
+
+
 Route::get('/home', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
     ]);
 })->name('home');
 
-Route::get('/welcome', function() {
-    return Inertia::render('Views/Welcome', [
-        'name' => 'Definotlee',
-        'subject_ni_lee' => [
-            'sub1','sub2','sub3'
-        ]
-    ]);
+Route::get('/welcome', function () {
+    return Inertia::render('Views/Welcome');
 })->name('welcome');
 
 Route::post('/logout', function () {
