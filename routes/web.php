@@ -14,6 +14,16 @@ Route::get('/', function () {
     ]);
 });
 
+// 'users' => User::all()->map(function ($user) {
+//     return [
+//         'name' => $user->name,
+//         'email' => $user->email,
+//         'created_at' => $user->created_at->format('Y-m-d H:i:s'),
+//         'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
+//     ];
+// }); 
+
+
 Route::get('/home', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()

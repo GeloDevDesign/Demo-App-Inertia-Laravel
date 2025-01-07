@@ -8,7 +8,6 @@ import { router } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 import Layout from "./Pages/Shared/Layout.vue";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
-import { Ziggy } from './ziggy';
 
 const pinia = createPinia();
 router.on("start", () => NProgress.start());
@@ -29,7 +28,7 @@ createInertiaApp({
         const app = createApp({ render: () => h(App, props) });
         app.use(plugin)
             .use(pinia)
-            .use(ZiggyVue,Ziggy)
+            .use(ZiggyVue)
             .component("Head", Head)
             .component("Link", Link);
         app.mount(el);
