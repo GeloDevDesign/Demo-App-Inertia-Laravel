@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
@@ -18,9 +19,10 @@ class AuthController extends Controller
         request()->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', 'min:3'], // Fixed 'numeric' to 'email'
-            'password' => ['required', 'confirmed', Password::min(8)], // Removed duplicated 'confirmed'
+            'password' => ['required', 'confirmed', Password::min(8), 'confirmed'],
         ]);
 
         return response()->json(request()->all());
+        return Inertia::render('Auth/Login');
     }
 }

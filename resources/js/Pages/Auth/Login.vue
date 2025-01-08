@@ -28,7 +28,7 @@ defineOptions({
                 >Login</navLink
             >
            
-            <navLink method="POST" as="button" page="register"
+            <navLink  page="register"
                 >Register</navLink
             >
         </div>
