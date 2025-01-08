@@ -12,9 +12,8 @@ class AuthController extends Controller
         // $this->middleware('guest'); // Fixed 'Middleware' to 'middleware'
     }
 
-    public function register()
+    public function store()
     {
-
         sleep(1);
         request()->validate([
             'name' => ['required', 'min:3'],

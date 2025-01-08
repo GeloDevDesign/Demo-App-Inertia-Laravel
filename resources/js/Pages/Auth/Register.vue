@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
-
-import navLink from "../Components/navLink.vue";
+import NavLink from "../Components/navLink.vue";
+import InputTag from "../Components/input.vue";
 
 const form = useForm({
     name: "",
@@ -31,66 +31,61 @@ defineProps({
 
         <div class="flex items-center justify-center">
             <form @submit.prevent="submit" class="w-96">
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text">Name</span>
-                    </div>
-                    <input
-                        name="name"
-                        type="text"
-                        v-model="form.name"
-                        placeholder="Type here"
-                        class="input input-bordered w-full"
-                    />
-                </label>
+                <InputTag
+                    v-model="form.name"
+                    name="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    :errors="form.errors"
+                >
+                    Name
+                </InputTag>
 
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text">Email</span>
-                    </div>
-                    <input
-                        name="email"
-                        type="email"
-                        v-model="form.email"
-                        placeholder="Type here"
-                        class="input input-bordered w-full"
-                    />
-                </label>
+                <InputTag
+                    v-model="form.email"
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    :errors="form.errors"
+                >
+                    Email
+                </InputTag>
 
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text">Password</span>
-                    </div>
-                    <input
-                        name="password"
-                        type="password"
-                        v-model="form.password"
-                        placeholder="Type here"
-                        class="input input-bordered w-full"
-                    />
-                </label>
+                <InputTag
+                    v-model="form.password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    :errors="form.errors"
+                >
+                    Password
+                </InputTag>
 
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text">Confirm Password</span>
-                    </div>
-                    <input
-                        name="password_confirmation"
-                        type="password"
-                        v-model="form.password_confirmation"
-                        placeholder="Type here"
-                        class="input input-bordered w-full"
-                    />
-                </label>
+                <InputTag
+                    v-model="form.password_confirmation"
+                    name="password_confirmation"
+                    type="password"
+                    placeholder="Confirm your password"
+                    :errors="form.errors"
+                >
+                    Confirm Password
+                </InputTag>
+
                 <p class="mt-4">
-                    Already Login?
+                    Already have an account?
                     <Link
                         class="link text-blue-500 font-bold"
                         :href="route('login')"
-                        >Login</Link
                     >
+                        Login
+                    </Link>
                 </p>
-                <button type="submit" class="btn btn-primary w-full mt-4">
+
+                <button
+                    type="submit"
+                    :disabled="form.processing"
+                    class="btn btn-primary w-full mt-4"
+                >
                     Register
                 </button>
             </form>

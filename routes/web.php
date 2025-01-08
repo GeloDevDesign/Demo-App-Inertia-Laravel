@@ -18,7 +18,7 @@ Route::get('/', function () {
 // }); 
 
 
-Route::post('/register', function () {
+Route::get('/register', function () {
     return Inertia::render('Auth/Register', [
         'time' => now()->toTimeString()
     ]);
@@ -29,7 +29,7 @@ Route::post('/register', function () {
 Route::get('/home', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
-    ]);
+    ]); 
 })->name('home');
 
 Route::get('/welcome', function () {
@@ -41,4 +41,4 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-Route::post('/register-test', [AuthController::class,'register']);
+Route::post('/register-test', [AuthController::class,'store']);
