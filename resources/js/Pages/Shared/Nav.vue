@@ -61,7 +61,7 @@ const showLayout = computed(() => {
         </div>
         <div class="navbar-end">
             <Link
-                href="/logout"
+                :href="route('logout')"
                 method="POST"
                 as="button"
                 class="btn btn-neutral"

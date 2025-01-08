@@ -8,13 +8,10 @@ defineProps({
     time: String,
 });
 
-
-
 </script>
 
 <template>
  <Head :title="$page.component">
-   
  </Head>
 
         <div class="flex h-full">

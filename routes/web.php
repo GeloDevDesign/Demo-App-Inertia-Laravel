@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Auth/Login');
-});
+})->name('login');;
 
 // 'users' => User::all()->map(function ($user) {
 //     return [
@@ -37,4 +38,7 @@ Route::get('/welcome', function () {
 
 Route::post('/logout', function () {
     return Inertia::render('Auth/Login');
-});
+})->name('logout');
+
+
+Route::post('/register-test', [AuthController::class,'register']);
