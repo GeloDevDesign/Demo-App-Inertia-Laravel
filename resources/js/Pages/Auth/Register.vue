@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
 import NavLink from "../Components/navLink.vue";
-import InputTag from "../Components/input.vue";
+import inputLayout from "../Components/input.vue";
 
 const form = useForm({
     name: "",
@@ -12,7 +12,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post("/register-test");
+    form.post("/register-test", {
+        onError: () => form.reset("password", "password_confirmation"),
+    });
 };
 
 defineOptions({
@@ -31,45 +33,41 @@ defineProps({
 
         <div class="flex items-center justify-center">
             <form @submit.prevent="submit" class="w-96">
-                <InputTag
-                    v-model="form.name"
-                    name="name"
+                <inputLayout
                     type="text"
-                    placeholder="Enter your name"
-                    :errors="form.errors"
-                >
-                    Name
-                </InputTag>
+                    :errors="form.errors.name"
+                    name="name"
+                    pagename="Name"
+                    placeholder="Enter your Name"
+                    v-model="form.name"
+                />
 
-                <InputTag
-                    v-model="form.email"
-                    name="email"
+                <inputLayout
                     type="email"
-                    placeholder="Enter your email"
-                    :errors="form.errors"
-                >
-                    Email
-                </InputTag>
+                    :errors="form.errors.email"
+                    name="email"
+                    pagename="Email"
+                    placeholder="Enter your Email"
+                    v-model="form.email"
+                />
 
-                <InputTag
-                    v-model="form.password"
+                <inputLayout
+                    type="password"
+                    :errors="form.errors.password"
                     name="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    :errors="form.errors"
-                >
-                    Password
-                </InputTag>
+                    pagename="Password"
+                    placeholder="Enter your Password"
+                    v-model="form.password"
+                />
 
-                <InputTag
-                    v-model="form.password_confirmation"
-                    name="password_confirmation"
+                <inputLayout
                     type="password"
-                    placeholder="Confirm your password"
-                    :errors="form.errors"
-                >
-                    Confirm Password
-                </InputTag>
+                    :errors="form.errors.password"
+                    name="password"
+                    pagename="Confirm Password"
+                    placeholder="Enter your Password"
+                    v-model="form.password_confirmation"
+                />
 
                 <p class="mt-4">
                     Already have an account?
