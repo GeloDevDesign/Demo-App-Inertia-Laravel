@@ -13,12 +13,14 @@ defineOptions({
         <meta name="description" content="this is meta tag" />
     </Head>
 
-    <div class="flex justify-center items-center h-full">
+    <div class="flex justify-center items-center h-full flex-col">
         <div>
-            <span  class="font-semibold font-"> Welcome Back</span>
+            <span class="font-semibold text-lg"> Welcome Back</span>
         </div>
         <div class="w-96">
-            <inputTag type="text" name="name" pagename="login" />
+            <inputTag type="text" name="name" pagename="Username" />
+            <inputTag type="text" name="name" pagename="Password" />
+        
         </div>
     </div>
 </template>
