@@ -33,7 +33,7 @@ defineProps({
 
         <div class="flex items-center justify-center">
             <form @submit.prevent="submit" class="w-96">
-                <inputLayout
+            <inputLayout
                     type="text"
                     :errors="form.errors.name"
                     name="name"
