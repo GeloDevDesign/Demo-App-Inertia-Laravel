@@ -3,10 +3,10 @@
 import { computed } from "vue";
 
 const model = defineModel({
-    type: {
-        required: true,
-    },
+    type: [String, Number], 
+    required: true, 
 });
+
 
 const props = defineProps({
     name: String,
