@@ -8,6 +8,7 @@ defineProps({
     time: String,
 });
 
+
 </script>
 
 <template>
@@ -18,7 +19,7 @@ defineProps({
             <div
                 class="flex w-full h-full justify-center items-center flex-col gap-2"
             >
-            <span>Welcome {{ $page.props.auth.user.username }}</span>
+            <span>Welcome </span>
                 <h1 class="p-8 bg-gray-800 rounded-xl">
                     <span class="text-red-300">{{ time }}</span>
                 </h1>

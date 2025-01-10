@@ -6,12 +6,12 @@ import { usePage } from "@inertiajs/vue3";
 const page = usePage();
 
 const showLayout = computed(() => {
-    return page.props.auth.user.username;
+return page.props.auth.user.username;
 });
 </script>
 
 <template>
-    <section v-if="showLayout" class="navbar bg-base-100">
+    <section  class="navbar bg-base-100">
         <div class="navbar-start">
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -50,7 +50,7 @@ const showLayout = computed(() => {
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li>
-                    <navLink page="home" componenName="/home">Home</navLink>
+                    <navLink page="home" componenName="/">Home</navLink>
                 </li>
                 <li>
                     <navLink page="welcome" componenName="/welcome"

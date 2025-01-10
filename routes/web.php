@@ -25,7 +25,7 @@ Route::get('/register', function () {
 
 
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
     ]);

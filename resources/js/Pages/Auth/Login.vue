@@ -11,10 +11,13 @@ defineOptions({
 const form = useForm({
     email: "",
     password: "",
+    remember: null
 });
 
 const submit = () => {
-    form.post("/login");
+    form.post('/login',{
+        onError: () => form.reset("password")
+    });
 };
 </script>
 
@@ -37,27 +40,23 @@ const submit = () => {
                 action=""
             >
                 <inputTag
+                    :errors="form.errors.email"
                     v-model="form.email"
                     type="text"
                     name="name"
                     pagename="Email"
                 />
                 <inputTag
+                    :errors="form.errors.password"
                     v-model="form.password"
                     type="password"
                     name="name"
                     pagename="Password"
                 />
-                <div>
-                    <p class="mt-4">
-                        Don't have an account?
-                        <Link
-                            class="link text-blue-500 font-bold"
-                            :href="route('register')"
-                        >
-                            Sign up here.
-                        </Link>
-                    </p>
+
+                <div class="flex items-center gap-2">
+                    <span>Remember me:</span>
+                    <input type="checkbox"/>
                 </div>
                 <button
                     type="submit"
@@ -67,6 +66,17 @@ const submit = () => {
                     Login
                 </button>
             </form>
+            <div class="flex justify-center">
+                <p class="mt-4 text-sm">
+                    Don't have an account?
+                    <Link
+                        class="link text-blue-500 font-bold"
+                        :href="route('register')"
+                    >
+                        Sign up here.
+                    </Link>
+                </p>
+            </div>
         </div>
     </div>
 </template>

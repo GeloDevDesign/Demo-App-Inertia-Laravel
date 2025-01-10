@@ -6,13 +6,17 @@ import Layout from "../Shared/Layout.vue";
 defineProps({
     time: String,
 });
+
+
+
+
 </script>
 <template>
     <Head title="Welcome">
       
     </Head>
     <div>
-      <span>Welcome {{ $page.props.auth.user.username }}</span>
+      <span>Welcome </span>
         <header>
             <!-- Render the "pagename" slot if provided -->
             <slot name="pagename"></slot>

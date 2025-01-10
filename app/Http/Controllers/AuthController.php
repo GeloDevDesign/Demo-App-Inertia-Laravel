@@ -43,7 +43,6 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             request()->session()->regenerate();
-
             return redirect()->route('home');
         }
 
