@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="mb-2">
+    <div class="">
         <label class="form-control w-full">
             <div class="label">
                 <span class="label-text">{{ pagename }}</span>
@@ -33,7 +33,7 @@ const props = defineProps({
                 :class="errors ? 'border-red-500' : ''"
             />
         </label>
-        <span v-if="errors" class="text-red-500 text-sm mt-2">
+        <span v-if="errors" class="text-red-500 text-sm">
             {{ errors }}
         </span>
     </div>

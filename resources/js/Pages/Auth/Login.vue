@@ -11,12 +11,12 @@ defineOptions({
 const form = useForm({
     email: "",
     password: "",
-    remember: null
+    remember: null,
 });
 
 const submit = () => {
-    form.post('/login',{
-        onError: () => form.reset("password")
+    form.post("/login", {
+        onError: () => form.reset("password"),
     });
 };
 </script>
@@ -54,9 +54,29 @@ const submit = () => {
                     pagename="Password"
                 />
 
-                <div class="flex items-center gap-2">
-                    <span>Remember me:</span>
-                    <input type="checkbox"/>
+                <div class="flex items-center justify-between">
+                    <div class="form-control">
+                        <label class="label cursor-pointer space-x-2">
+                            <input
+                                v-model="form.remember"
+                                type="checkbox"
+                                checked="checked"
+                                class="checkbox checkbox-secondary"
+                            />
+                            <span class="label-text">Remember me</span>
+                        </label>
+                    </div>
+                    <div class="flex justify-center">
+                        <p class="text-sm">
+                            Don't have an account?
+                            <Link
+                                class="link text-blue-500 font-bold"
+                                :href="route('register')"
+                            >
+                                Sign up here.
+                            </Link>
+                        </p>
+                    </div>
                 </div>
                 <button
                     type="submit"
@@ -66,17 +86,6 @@ const submit = () => {
                     Login
                 </button>
             </form>
-            <div class="flex justify-center">
-                <p class="mt-4 text-sm">
-                    Don't have an account?
-                    <Link
-                        class="link text-blue-500 font-bold"
-                        :href="route('register')"
-                    >
-                        Sign up here.
-                    </Link>
-                </p>
-            </div>
         </div>
     </div>
 </template>

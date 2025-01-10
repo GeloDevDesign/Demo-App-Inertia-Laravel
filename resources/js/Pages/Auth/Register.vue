@@ -34,7 +34,7 @@ defineProps({
         <div
             class="flex items-center justify-center w-11/12 sm:max-w-sm md:max-w-md lg:w-full"
         >
-            <form @submit.prevent="submit" class="w-full">
+            <form @submit.prevent="submit" class="w-full flex flex-col gap-6">
                 <inputLayout
                     type="text"
                     :errors="form.errors.name"
