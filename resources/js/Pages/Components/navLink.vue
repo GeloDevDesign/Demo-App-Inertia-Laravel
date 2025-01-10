@@ -18,7 +18,7 @@ const props = defineProps({
 // };
 
 const isActive = computed(() => {
-    return page.url.startsWith(props.componenName)
+    return page.url === props.componenName 
         ? "btn-primary"
         : "btn-ghost";
 });
@@ -26,11 +26,12 @@ const isActive = computed(() => {
 
 <template>
     <Link
-        class="btn"
+        class="btn w-full"
         cache-for="1m"
         prefetch
         :href="route(props.page)"
         :class="isActive"
+        
     >
         <slot />
     </Link>

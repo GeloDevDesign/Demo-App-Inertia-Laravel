@@ -4,17 +4,14 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
 
+// Login route
 Route::inertia('/login', 'Auth/Login')->name('login');
-
-// 'users' => User::all()->map(function ($user) {
-//     return [
-//         'name' => $user->name,
-//         'email' => $user->email,
-//         'created_at' => $user->created_at->format('Y-m-d H:i:s'),
-//         'updated_at' => $user->updated_at->format('Y-m-d H:i:s'),
-//     ];
-// }); 
 
 
 Route::get('/register', function () {
@@ -22,23 +19,23 @@ Route::get('/register', function () {
         'time' => now()->toTimeString()
     ]);
 })->name('register');
+Route::post('/register-test', [AuthController::class, 'store']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 
-
+// Home page route
 Route::get('/', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
     ]);
-})->name('home');
+})->name('home')->middleware('auth');
 
 Route::get('/welcome', function () {
     return Inertia::render('Views/Welcome');
-})->name('welcome');
-
-Route::post('/logout', function () {
-    return Inertia::render('Auth/Login');
-})->name('logout');
-
-
-Route::post('/register-test', [AuthController::class,'store']);
-Route::post('/login', [AuthController::class, 'login']);
+})->name('welcome')->middleware('auth');
