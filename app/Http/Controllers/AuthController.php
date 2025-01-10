@@ -21,7 +21,7 @@ class AuthController extends Controller
         sleep(2);
         $validatedAttributes = request()->validate([
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', 'min:3','unique:users'], // Fixed 'numeric' to 'email'
+            'email' => ['required', 'email', 'min:3', 'unique:users'], // Fixed 'numeric' to 'email'
             'password' => ['required', 'confirmed', Password::min(8)],
 
         ]);
@@ -32,5 +32,24 @@ class AuthController extends Controller
         Log::info('User registered successfully', ['user' => $user]);
 
         return redirect()->route('home');
+    }
+
+    public function login()
+    {
+        $credentials = request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            request()->session()->regenerate();
+
+            return redirect()->route('home');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+
     }
 }

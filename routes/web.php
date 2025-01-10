@@ -4,9 +4,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Auth/Login');
-})->name('login');;
+
+Route::inertia('/login', 'Auth/Login')->name('login');
 
 // 'users' => User::all()->map(function ($user) {
 //     return [
@@ -29,7 +28,7 @@ Route::get('/register', function () {
 Route::get('/home', function () {
     return Inertia::render('Views/Home', [
         'time' => now()->toTimeString()
-    ]); 
+    ]);
 })->name('home');
 
 Route::get('/welcome', function () {
@@ -42,3 +41,4 @@ Route::post('/logout', function () {
 
 
 Route::post('/register-test', [AuthController::class,'store']);
+Route::post('/login', [AuthController::class, 'login']);

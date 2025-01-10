@@ -29,11 +29,13 @@ defineProps({
 <template>
     <Head title="Register"></Head>
     <div class="flex flex-col items-center justify-center w-full h-full">
-        <h1 class="text-lg text-blue-500">Registration Page</h1>
+        <h1 class="text-2xl font-semibold text-primary">Registration Page</h1>
 
-        <div class="flex items-center justify-center">
-            <form @submit.prevent="submit" class="w-96">
-            <inputLayout
+        <div
+            class="flex items-center justify-center w-11/12 sm:max-w-sm md:max-w-md lg:w-full"
+        >
+            <form @submit.prevent="submit" class="w-full">
+                <inputLayout
                     type="text"
                     :errors="form.errors.name"
                     name="name"
