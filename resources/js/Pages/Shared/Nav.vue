@@ -12,13 +12,14 @@ const showLayout = computed(() => {
 
 <template>
     <section
-        class="navbar bg-base-100 flex flex-col justify-between h-full items-center"
+        class=" w-52 p-4 flex flex-col justify-between h-full items-center"
     >
-        <div class="flex flex-col items-center gap-8">
-            <div>
-                <div class="w-10 aspect-square bg-white rounded-full"></div>
+        <div class="flex flex-col items-center gap-8 w-full">
+            <div class="w-full flex items-center gap-2">
+                <div class="w-14 aspect-square bg-white rounded-full"></div>
+                <span class="font-semibold">Agendra Pro</span>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-2 w-full">
                 <navLink page="home" componenName="/">Home</navLink>
                 <navLink page="welcome" componenName="/welcome"
                     >Welcome</navLink
