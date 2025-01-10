@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         $remember = request()->boolean('remember');
 
-        if (Auth::attempt($credentials,$remember)) {
+        if (Auth::attempt($credentials, $remember)) {
             request()->session()->regenerate();
             return redirect()->route('home');
         }
@@ -51,11 +51,11 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
-
     }
 
     public function logout()
     {
+        Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 

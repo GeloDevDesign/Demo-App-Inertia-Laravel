@@ -22,6 +22,7 @@ const isActive = computed(() => {
         ? "btn-primary"
         : "btn-ghost";
 });
+
 </script>
 
 <template>
