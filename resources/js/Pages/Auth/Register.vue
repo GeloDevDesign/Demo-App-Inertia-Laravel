@@ -9,6 +9,7 @@ const form = useForm({
     email: "",
     password: "",
     password_confirmation: "",
+    avatar: null,
 });
 
 const submit = () => {
@@ -34,7 +35,7 @@ defineProps({
         <div
             class="flex items-center justify-center w-11/12 sm:max-w-sm md:max-w-md lg:w-full"
         >
-            <form @submit.prevent="submit" class="w-full flex flex-col gap-6">
+            <form @submit.prevent="submit" class="w-full flex flex-col gap-4">
                 <inputLayout
                     type="text"
                     :errors="form.errors.name"
@@ -71,6 +72,24 @@ defineProps({
                     v-model="form.password_confirmation"
                 />
 
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text">Upload Profile</span>
+                    </div>
+                    <input
+                        type="file"
+                        class="file-input file-input-bordered w-full"
+                        id="avatar"
+                        @input="form.avatar = $event.target.files[0]"
+                    />
+                </label>
+                <progress
+                    v-if="form.progress"
+                    :value="form.progress.percentage"
+                    max="100"
+                >
+                    {{ form.progress.percentage }}%
+                </progress>
                 <p class="mt-4">
                     Already have an account?
                     <Link

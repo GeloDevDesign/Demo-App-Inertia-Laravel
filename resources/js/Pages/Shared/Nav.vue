@@ -6,12 +6,12 @@ import { usePage } from "@inertiajs/vue3";
 const page = usePage();
 
 const showLayout = computed(() => {
-    return page.props.auth.user.username;
+    return page.props.auth.user
 });
 </script>
 
 <template>
-    <section
+    <section v-if="showLayout"
         class=" w-52 p-4 flex flex-col justify-between h-full items-center"
     >
         <div class="flex flex-col items-center gap-8 w-full">
@@ -27,6 +27,10 @@ const showLayout = computed(() => {
             </div>
         </div>
         <div>
+            <span>Welcome</span>
+            <span>{{ $page.props.auth.user.name }}</span>
+        </div>
+        <div>
             <Link
                 :href="route('logout')"
                 method="POST"
@@ -36,4 +40,7 @@ const showLayout = computed(() => {
             >
         </div>
     </section>
+    <div>
+        <span>arrow</span>
+    </div>
 </template>
