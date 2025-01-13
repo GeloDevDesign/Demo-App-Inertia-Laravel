@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
 import NavLink from "../Components/navLink.vue";
 import inputLayout from "../Components/input.vue";
+import { formToJSON } from "axios";
 
 const form = useForm({
     name: "",
@@ -15,6 +16,8 @@ const form = useForm({
 const submit = () => {
     form.post("/register-test", {
         onError: () => form.reset("password", "password_confirmation"),
+        forceFormData: true,
+        preserveScroll: true,
     });
 };
 
@@ -26,11 +29,9 @@ defineProps({
     page: String,
 });
 
-const addFiles = (fileValue) =>{
-    form.avatar =  fileValue[0]
-}
-
-
+const addFiles = (fileValue) => {
+    form.avatar = fileValue[0];
+};
 </script>
 
 <template>
@@ -88,7 +89,13 @@ const addFiles = (fileValue) =>{
                         id="avatar"
                         @input="addFiles($event.target.files)"
                     />
-                 </label>
+                    <span
+                        v-if="form.errors.avatar"
+                        class="text-red-500 text-sm"
+                    >
+                        {{ form.errors.avatar }}
+                    </span>
+                </label>
 
                 <p class="mt-4">
                     Already have an account?

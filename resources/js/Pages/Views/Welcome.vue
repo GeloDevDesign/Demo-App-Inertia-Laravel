@@ -6,24 +6,24 @@ import Layout from "../Shared/Layout.vue";
 defineProps({
     time: String,
 });
-
-
-
-
 </script>
 <template>
-    <Head title="Welcome">
-      
-    </Head>
+    <Head title="Welcome"> </Head>
     <div>
-      <span>Welcome </span>
-        <header>
-            <!-- Render the "pagename" slot if provided -->
-            <slot name="pagename"></slot>
-        </header>
-        <main>
-            <!-- Render the default slot content -->
-            <slot></slot>
-        </main>
+        <div class="card bg-base-100 w-96 shadow-xl">
+            <figure>
+                <img
+                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    alt="Shoes"
+                />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">Shoes!</h2>
+                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

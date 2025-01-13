@@ -15,7 +15,7 @@ import { ref, computed } from "vue";
 
             </div>
         </header>
-        <div >
+        <div class="w-full" >
             <div>
                 <slot name="pagename"></slot>
             </div>

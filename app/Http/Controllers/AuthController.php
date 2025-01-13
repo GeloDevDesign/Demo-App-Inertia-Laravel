@@ -23,14 +23,26 @@ class AuthController extends Controller
 
         $validatedAttributes = request()->validate([
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', 'min:3', 'unique:users'], 
-            'avatar' => ['file','nullable','max:300'],
+            'email' => ['required', 'email', 'min:3', 'unique:users'],
+            'avatar' => [
+                'file',
+                'nullable',
+                'max:300',
+                'mimes:jpeg,png,jpg,gif',
+                'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
+            ], // 300 kilobytes
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
         ]);
 
-        if (request()->hasFile('avatar')) {
-           $validatedAttributes['avatar'] =  Storage::disk('public')->put('avatars', request()->file('avatar'));
+        try {
+            if (request()->hasFile('avatar')) {
+                $validatedAttributes['avatar'] = Storage::disk('public')->put('avatars', request()->file('avatar'));
+            }
+        } catch (\Exception $e) {
+            Log::error('File upload failed', ['error' => $e->getMessage()]);
+            return back()->withErrors(['avatar' => 'Failed to upload file. Please try again.']);
         }
+
 
         $user = User::create($validatedAttributes);
         Auth::login($user);
