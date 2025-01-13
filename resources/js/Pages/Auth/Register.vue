@@ -15,9 +15,7 @@ const form = useForm({
 
 const submit = () => {
     form.post("/register-test", {
-        onError: () => form.reset("password", "password_confirmation"),
-        forceFormData: true,
-        preserveScroll: true,
+        onError: () => form.reset("password", "password_confirmation")
     });
 };
 

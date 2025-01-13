@@ -28,8 +28,7 @@ class AuthController extends Controller
                 'file',
                 'nullable',
                 'max:300',
-                'mimes:jpeg,png,jpg,gif',
-                'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
+                'mimes:jpeg,png,jpg,gif,svg'
             ], // 300 kilobytes
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
         ]);
