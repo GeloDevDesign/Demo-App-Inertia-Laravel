@@ -18,24 +18,21 @@ const props = defineProps({
 // };
 
 const isActive = computed(() => {
-    return page.url === props.componenName 
+    return page.url === props.componenName
         ? "border-b-2 border-primary"
         : "border-none";
 });
-
 </script>
 
 <template>
     <div :class="isActive" class="w-full">
         <Link
-        class="btn w-full btn-ghost" 
-        cache-for="1m"
-        prefetch
-        :href="route(props.page)"
-     
-        
-    >
-        <slot />
-    </Link>
+            class="btn w-full btn-ghost"
+            cache-for="1m"
+            prefetch
+            :href="route(props.page)"
+        >
+            <slot />
+        </Link>
     </div>
 </template>

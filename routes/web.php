@@ -37,5 +37,4 @@ Route::get('/', function () {
     ]);
 })->name('home')->middleware('auth');
 
-
 Route::inertia('/welcome', 'Views/Welcome')->name('welcome')->middleware('auth');
