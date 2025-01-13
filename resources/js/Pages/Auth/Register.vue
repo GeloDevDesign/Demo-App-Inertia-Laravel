@@ -77,7 +77,7 @@ defineProps({
                     placeholder="Enter your Password"
                     v-model="form.password_confirmation"
                 />
-
+                
                 <label class="form-control w-full">
                     <div class="label">
                         <span class="label-text">Upload Profile</span>

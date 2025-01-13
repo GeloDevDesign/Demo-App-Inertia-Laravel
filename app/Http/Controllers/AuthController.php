@@ -22,7 +22,7 @@ class AuthController extends Controller
         // sleep(2);
 
         $validatedAttributes = request()->validate([
-            'name' => ['required', 'min:3'],
+            'name' => ['required', 'max:10'],
             'email' => ['required', 'email', 'min:3', 'unique:users'],
             'avatar' => [
                 'file',

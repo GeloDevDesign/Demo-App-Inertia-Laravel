@@ -8,7 +8,7 @@ import { ref, computed } from "vue";
 </script>
 
 <template>
-    <section class="p-4 flex ml-64 h-full">
+    <section class="p-4 flex ml-52   h-full">
         <header class="fixed top-0 bottom-0 left-0 border-r-[1px]">
             <Nav />
             <div>

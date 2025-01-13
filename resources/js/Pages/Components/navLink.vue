@@ -22,6 +22,7 @@ const isActive = computed(() => {
         ? "border-b-2 border-primary"
         : "border-none";
 });
+
 </script>
 
 <template>
