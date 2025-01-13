@@ -26,9 +26,8 @@ defineProps({
     page: String,
 });
 
-const addFiles = () =>{
-
-
+const addFiles = (fileValue) =>{
+    form.avatar =  fileValue[0]
 }
 
 
@@ -87,7 +86,7 @@ const addFiles = () =>{
                         type="file"
                         class="file-input file-input-bordered w-full"
                         id="avatar"
-                        @input="form.avatar = $event.target.files[0]"
+                        @input="addFiles($event.target.files)"
                     />
                  </label>
 
