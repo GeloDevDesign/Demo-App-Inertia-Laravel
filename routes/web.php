@@ -19,6 +19,7 @@ Route::get('/register', function () {
         'time' => now()->toTimeString()
     ]);
 })->name('register');
+
 Route::post('/register-test', [AuthController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -23,9 +23,9 @@ class AuthController extends Controller
 
         $validatedAttributes = request()->validate([
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', 'min:3', 'unique:users'], // Fixed 'numeric' to 'email'
+            'email' => ['required', 'email', 'min:3', 'unique:users'], 
             'avatar' => ['file','nullable','max:300'],
-            'password' => ['required', 'confirmed', Password::min(8)],
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
         ]);
 
         if (request()->hasFile('avatar')) {
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             request()->session()->regenerate();
-            return redirect()->route('login');
+            return redirect()->route('home');
         }
 
         return back()->withErrors([

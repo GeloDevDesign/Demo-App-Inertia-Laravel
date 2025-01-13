@@ -25,6 +25,13 @@ defineOptions({
 defineProps({
     page: String,
 });
+
+const addFiles = () =>{
+
+
+}
+
+
 </script>
 
 <template>
@@ -82,14 +89,8 @@ defineProps({
                         id="avatar"
                         @input="form.avatar = $event.target.files[0]"
                     />
-                </label>
-                <progress
-                    v-if="form.progress"
-                    :value="form.progress.percentage"
-                    max="100"
-                >
-                    {{ form.progress.percentage }}%
-                </progress>
+                 </label>
+
                 <p class="mt-4">
                     Already have an account?
                     <Link
