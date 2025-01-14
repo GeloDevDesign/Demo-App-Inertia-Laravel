@@ -89,7 +89,7 @@ const collapseSideNav = () => {
                             class="dropdown-content menu bg-base-100 rounded-box z-[1] w-48 p-2 shadow border-[1px]"
                         >
                             <li><a>Item 1</a></li>
-                            <li><a>Item 2</a></li>
+                            <li><a>Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -144,14 +144,14 @@ const collapseSideNav = () => {
                 class="btn w-full flex btn-ghost"
                 :class="isCollapse ? 'justify-start' : 'justify-center'"
             >
-                F
+                
                 <span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="currentColor"
+                        stroke="currentColor"   
                         class="size-6"
                     >
                         <path
