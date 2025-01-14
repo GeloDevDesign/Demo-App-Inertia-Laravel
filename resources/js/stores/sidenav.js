@@ -48,7 +48,6 @@ export const userSideNav = defineStore("sideNav", {
         ],
 
         isCollapse: true,
-
     }),
 
     getters: {},

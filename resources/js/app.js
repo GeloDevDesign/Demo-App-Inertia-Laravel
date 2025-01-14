@@ -15,13 +15,13 @@ router.on("finish", () => NProgress.done());
 
 createInertiaApp({
     title: (title) => (title ? `${title} - My App` : "My App"),
-    resolve: (name) => {
-        const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
-        let page = pages[`./Pages/${name}.vue`];
-
+    resolve: async (name) => {
+        const pages = import.meta.glob("./Pages/**/*.vue");
+        const page = await pages[`./Pages/${name}.vue`]();
+        
         page.default.layout =
             page.default.layout === undefined ? Layout : page.default.layout;
-
+    
         return page;
     },
     setup({ el, App, props, plugin }) {
