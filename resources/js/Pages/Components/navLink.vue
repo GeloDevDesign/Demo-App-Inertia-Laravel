@@ -7,6 +7,7 @@ const page = usePage(); // Access the $page object
 const props = defineProps({
   page: String,
   componenName: String,
+  collapse: Boolean
 });
 
 const isActive = computed(() => {
@@ -26,10 +27,10 @@ const isActive = computed(() => {
       :href="route(props.page)"
     >
       <!-- Icon Slot -->
-      <slot name="icon" />
+      <slot  name="icon" />
       
       <!-- Name Slot -->
-      <slot name="name" />
+      <slot v-if="collapse" name="name" />
     </Link>
   </div>
 </template>

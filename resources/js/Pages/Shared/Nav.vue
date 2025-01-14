@@ -4,32 +4,43 @@ import navLink from "../Components/navLink.vue";
 import { usePage } from "@inertiajs/vue3";
 
 const isCollapse = ref(false);
-
 const page = usePage();
+
+const emit = defineEmits(["collapse"]);
 
 const showLayout = computed(() => {
     return page.props.auth.user;
 });
-
 const collapseSideNav = () => {
     isCollapse.value = !isCollapse.value;
+    emit("collapse", isCollapse.value);
 };
-
-
 </script>
 
 <template>
     <section
         v-if="showLayout"
-        class="py-4 px-2 flex flex-col justify-between h-full items-center transition-all-300"
+        class="py-4 px-2 flex flex-col justify-between h-full items-center transition-all duration-100 ease-in-out"
         :class="isCollapse ? 'w-52' : 'w-16'"
     >
-        <div class="flex flex-col items-center w-full transition-all-300">
-            <div class="w-full flex items-center gap-2 border-b-[1px] pb-8">
-                <div class="w-14 aspect-square bg-white rounded-full"></div>
-                <span v-if="isCollapse" class="font-semibold text-lg"
-                    >Agenda Pro</span
-                >
+        <div class="flex flex-col items-center w-full">
+            <div class="w-full flex items-center gap-2 border-b-[1px] pb-4">
+                <div class="flex justify-start items-center gap-4 py-4">
+                    <div class="avatar placeholder">
+                        <div
+                            class="bg-neutral text-neutral-content w-12 rounded-full"
+                        >
+                            <img
+                                class="avatar"
+                                :src="'storage/' + $page.props.auth.user.avatar"
+                                alt="user-image"
+                            />
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <p v-if="isCollapse" class="font-semibold">Agenda Pro</p>
             </div>
 
             <div class="w-full border-b-[1px] justify-between flex">
@@ -96,8 +107,8 @@ const collapseSideNav = () => {
             </div>
 
             <div class="flex flex-col gap-2 w-full py-4">
-                <navLink page="home" componenName="/">
-                    <template v-if="isCollapse" #name>
+                <navLink page="home" componenName="/" :collapse="isCollapse">
+                    <template  #name>
                         Task Management
                     </template>
                     <template #icon>
@@ -117,8 +128,8 @@ const collapseSideNav = () => {
                         </svg>
                     </template>
                 </navLink>
-                <navLink page="welcome" componenName="/welcome"
-                    ><template v-if="isCollapse" #name> welcome </template>
+                <navLink page="welcome" componenName="/welcome" :collapse="isCollapse">
+                    <template  #name>welcome</template>
                     <template #icon>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -133,25 +144,25 @@ const collapseSideNav = () => {
                                 stroke-linejoin="round"
                                 d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                             />
-                        </svg> </template
-                ></navLink>
+                        </svg>
+                    </template>
+                </navLink>
             </div>
         </div>
 
-        <div class="w-full flex justify-center transition-all-300">
+        <div class="w-full flex justify-center">
             <button
                 @click="collapseSideNav"
                 class="btn w-full flex btn-ghost"
                 :class="isCollapse ? 'justify-start' : 'justify-center'"
             >
-                
                 <span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="currentColor"   
+                        stroke="currentColor"
                         class="size-6"
                     >
                         <path
@@ -164,5 +175,6 @@ const collapseSideNav = () => {
                 <span v-if="isCollapse">Collapse</span>
             </button>
         </div>
+        
     </section>
 </template>
