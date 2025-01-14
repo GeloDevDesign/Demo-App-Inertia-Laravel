@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,8 +34,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Home page route
 Route::get('/', function () {
     return Inertia::render('Views/Home', [
-        'time' => now()->toTimeString()
+        'users' => User::paginate(8)
+        // 'users' => User::all()
+        //   'user' => User::all(['name'])
     ]);
 })->name('home')->middleware('auth');
+
 
 Route::inertia('/welcome', 'Views/Welcome')->name('welcome')->middleware('auth');

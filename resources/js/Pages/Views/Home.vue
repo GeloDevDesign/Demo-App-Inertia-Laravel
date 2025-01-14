@@ -5,185 +5,82 @@ import navLinks from "../Components/navLink.vue";
 import Layout from "../Shared/Layout.vue";
 
 defineProps({
-    time: String,
+    users: Object,
 });
+
+const getDate = (date) => {
+    return new Date(date).toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+};
 </script>
 
 <template>
     <Head :title="$page.component"> </Head>
 
-  
-
-    <div class="overflow-x-auto bg-base-100">
-        <table class="table">
+    <div class="overflow-x-auto bg-base-100 h-4/5">
+        <table class="table table-pin-rows">
             <!-- head -->
             <thead>
                 <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    </th>
                     <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                    <th></th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- row 1 -->
-                <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    </th>
+                <tr v-for="(userItem, index) in users?.data || []" :key="index">
                     <td>
                         <div class="flex items-center gap-3">
                             <div class="avatar">
                                 <div class="mask mask-squircle h-12 w-12">
                                     <img
-                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                        alt="Avatar Tailwind CSS Component"
+                                        class="avatar"
+                                        :src="
+                                            $page.props.auth.user.avatar
+                                                ? 'storage/' +
+                                                  $page.props.auth.user.avatar
+                                                : 'storage/avatars/default-image.jpg'
+                                        "
+                                        alt="user-image"
                                     />
                                 </div>
                             </div>
                             <div>
-                                <div class="font-bold">Hart Hagerty</div>
+                                <div class="font-bold">{{ userItem.name }}</div>
                                 <div class="text-sm opacity-50">
-                                    United States
+                                    {{ userItem.email }}
                                 </div>
                             </div>
                         </div>
                     </td>
                     <td>
-                        Zemlak, Daniel and Leannon
-                        <br />
-                        <span class="badge badge-ghost badge-sm"
-                            >Desktop Support Technician</span
-                        >
+                        {{ getDate(userItem.created_at) }}
                     </td>
-                    <td>Purple</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    </th>
-                    <td>
-                        <div class="flex items-center gap-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle h-12 w-12">
-                                    <img
-                                        src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                                        alt="Avatar Tailwind CSS Component"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Brice Swyre</div>
-                                <div class="text-sm opacity-50">China</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Carroll Group
-                        <br />
-                        <span class="badge badge-ghost badge-sm"
-                            >Tax Accountant</span
-                        >
-                    </td>
-                    <td>Red</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    </th>
-                    <td>
-                        <div class="flex items-center gap-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle h-12 w-12">
-                                    <img
-                                        src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                                        alt="Avatar Tailwind CSS Component"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Marjy Ferencz</div>
-                                <div class="text-sm opacity-50">Russia</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Rowe-Schoen
-                        <br />
-                        <span class="badge badge-ghost badge-sm"
-                            >Office Assistant I</span
-                        >
-                    </td>
-                    <td>Crimson</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
-                <!-- row 4 -->
-                <tr>
-                    <th>
-                        <label>
-                            <input type="checkbox" class="checkbox" />
-                        </label>
-                    </th>
-                    <td>
-                        <div class="flex items-center gap-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle h-12 w-12">
-                                    <img
-                                        src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-                                        alt="Avatar Tailwind CSS Component"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Yancy Tear</div>
-                                <div class="text-sm opacity-50">Brazil</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Wyman-Ledner
-                        <br />
-                        <span class="badge badge-ghost badge-sm"
-                            >Community Outreach Specialist</span
-                        >
-                    </td>
-                    <td>Indigo</td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
                 </tr>
             </tbody>
-            <!-- foot -->
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                    <th></th>
-                </tr>
-            </tfoot>
         </table>
+    </div>
+
+    <!-- Refactored pagination -->
+    <div class="flex justify-between items-center mt-4">
+        <div class="text-sm text-gray-600">
+            Showing page {{ users.current_page }} of {{ users.last_page }}
+        </div>
+        <div class="join ">
+            <Link
+                v-for="(link, index) in users.links"
+                :key="link.label"
+                :href="link.url"
+                class="join-item btn"
+                :class="{
+                    'btn-primary': link.active,
+                    'btn-disabled': !link.url,
+                }"
+                v-html="link.label"
+            />
+        </div>
     </div>
 </template>

@@ -20,9 +20,10 @@ const { navLinks, isCollapse } = storeToRefs(store);
                         <div
                             class="bg-neutral text-neutral-content w-12 rounded-full"
                         >
-                            <img
+                        <img
                                 class="avatar"
-                                :src="'storage/' + $page.props.auth.user.avatar"
+
+                                :src="$page.props.auth.user.avatar ? ('storage/' + $page.props.auth.user.avatar) : ('storage/avatars/default-image.jpg') "
                                 alt="user-image"
                             />
                         </div>
@@ -39,7 +40,8 @@ const { navLinks, isCollapse } = storeToRefs(store);
                         >
                             <img
                                 class="avatar"
-                                :src="'storage/' + $page.props.auth.user.avatar"
+
+                                :src="$page.props.auth.user.avatar ? ('storage/' + $page.props.auth.user.avatar) : ('storage/avatars/default-image.jpg') "
                                 alt="user-image"
                             />
                         </div>
