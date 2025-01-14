@@ -20,7 +20,7 @@ import { ref, computed } from "vue";
                 <slot name="pagename"></slot>
             </div>
 
-            <div>
+            <div >
                 <!-- <span>Welcome Back {{ $page.props.auth.user.username }}</span>   -->
                 <slot />
             </div>
