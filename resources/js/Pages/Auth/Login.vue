@@ -61,7 +61,7 @@ const submit = () => {
                                 v-model="form.remember"
                                 type="checkbox"
                                 checked="checked"
-                                class="checkbox checkbox-secondary"
+                                class="checkbox checkbox-primary"
                             />
                             <span class="label-text">Remember me</span>
                         </label>

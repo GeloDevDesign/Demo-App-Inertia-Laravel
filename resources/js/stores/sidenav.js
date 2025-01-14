@@ -47,7 +47,7 @@ export const userSideNav = defineStore("sideNav", {
             },
         ],
 
-        isCollapse: false,
+        isCollapse: true,
 
     }),
 
