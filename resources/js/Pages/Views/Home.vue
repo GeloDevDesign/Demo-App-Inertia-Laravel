@@ -3,6 +3,7 @@ import { ref } from "vue";
 import Nav from "../Shared/Nav.vue";
 import navLinks from "../Components/navLink.vue";
 import Layout from "../Shared/Layout.vue";
+import pagination from "../Components/pagination.vue"
 
 defineProps({
     users: Object,
@@ -63,24 +64,7 @@ const getDate = (date) => {
             </tbody>
         </table>
     </div>
-
+    <pagination :users="users"/>
     <!-- Refactored pagination -->
-    <div class="flex justify-between items-center mt-4">
-        <div class="text-sm text-gray-600">
-            Showing page {{ users.current_page }} of {{ users.last_page }}
-        </div>
-        <div class="join ">
-            <Link
-                v-for="(link, index) in users.links"
-                :key="link.label"
-                :href="link.url"
-                class="join-item btn"
-                :class="{
-                    'btn-primary': link.active,
-                    'btn-disabled': !link.url,
-                }"
-                v-html="link.label"
-            />
-        </div>
-    </div>
+   
 </template>
