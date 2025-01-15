@@ -4,18 +4,15 @@ import Nav from "../Shared/Nav.vue";
 import navLinks from "../Components/navLink.vue";
 import Layout from "../Shared/Layout.vue";
 import pagination from "../Components/pagination.vue"
+import { useHelperStore } from "../../stores/helper.js";
+
+const store = useHelperStore();
 
 defineProps({
     users: Object,
 });
 
-const getDate = (date) => {
-    return new Date(date).toLocaleDateString("en-us", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
-};
+
 </script>
 
 <template>
@@ -57,7 +54,7 @@ const getDate = (date) => {
                         </div>
                     </td>
                     <td>
-                        {{ getDate(userItem.created_at) }}
+                        {{ store.getDate(userItem.created_at)  }}
                     </td>
                 </tr>
             </tbody>

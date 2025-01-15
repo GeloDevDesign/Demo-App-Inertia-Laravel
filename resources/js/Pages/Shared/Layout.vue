@@ -2,8 +2,8 @@
 import Nav from "./Nav.vue";
 import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
-import { userSideNav } from "../../stores/sidenav.js";
-const store = userSideNav();
+import { userSideNavStore } from "../../stores/sidenav.js";
+const store = userSideNavStore();
 </script>
 
 <template>

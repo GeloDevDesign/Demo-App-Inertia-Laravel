@@ -2,9 +2,9 @@
 import { ref, computed } from "vue";
 import navLink from "../Components/navLink.vue";
 import { storeToRefs } from "pinia";
-import { userSideNav } from "../../stores/sidenav.js";
+import { userSideNavStore } from "../../stores/sidenav.js";
 
-const store = userSideNav();
+const store = userSideNavStore();
 const { navLinks, isCollapse } = storeToRefs(store);
 </script>
 

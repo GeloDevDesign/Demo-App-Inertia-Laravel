@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const userSideNav = defineStore("sideNav", {
+export const userSideNavStore = defineStore("sideNav", {
     state: () => ({
         navLinks: [
             {

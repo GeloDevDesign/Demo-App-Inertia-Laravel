@@ -2,6 +2,7 @@
 defineProps({
     users: Object,
 });
+
 </script>
 <template>
     <div class="flex justify-between items-center mt-4">
@@ -15,8 +16,8 @@ defineProps({
                 v-for="(link, index) in users.links"
                 :key="link.label"
                 :href="link.url"
-                class="join-item btn"
-                :class="{
+                class="join-item btn "
+                :class="{ 
                     'btn-primary': link.active,
                     'btn-disabled': !link.url,
                 }"
