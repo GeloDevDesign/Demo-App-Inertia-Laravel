@@ -13,18 +13,7 @@ use Inertia\Inertia;
 */
 
 // Login route
-Route::inertia('/login', 'Auth/Login')->name('login');
 
-
-Route::get('/register', function () {
-    return Inertia::render('Auth/Register', [
-        'time' => now()->toTimeString()
-    ]);
-})->name('register');
-
-Route::post('/register-test', [AuthController::class, 'store']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +24,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Home page route
 Route::get('/', [HomeController::class,'index'])->name('home')->middleware('auth');
 Route::inertia('/welcome', 'Views/Welcome')->name('welcome')->middleware('auth');
+
+
+require __DIR__ . '/auth.php';
