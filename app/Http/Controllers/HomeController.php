@@ -18,11 +18,11 @@ class HomeController extends Controller
                 ->when($search, function ($query, $search) {
                     $query->where('name', 'like', '%' . $search . '%');
                 })
-                ->when($filter, function ($query, $filter) {
-                    $query->where('role', $filter); // Adjust this based on your filter logic
+                ->when(!empty($filter), function ($query) use ($filter) {
+                    $query->where('role', $filter);
                 })
                 ->paginate(8)
-                ->withQueryString(),
+                ->withQueryString(), // Preserve query string for pagination
 
             'searchTerm' => $search,
             'filterTerm' => $filter,

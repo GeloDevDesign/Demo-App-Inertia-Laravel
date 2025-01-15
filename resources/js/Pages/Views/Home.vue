@@ -23,13 +23,14 @@ store.searchValue = props.searchTerm || "";
         <div class="flex justify-end mb-4">
             <searchbar/>
         </div>
-    <div class="overflow-x-auto bg-base-100 h-4/5">
+    <div class="overflow-x-auto bg-base-100 h-4/5 rounded-lg">
         <table class="table table-pin-rows">
             <!-- head -->
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,10 @@ store.searchValue = props.searchTerm || "";
                     </td>
                     <td>
                         {{ store.getDate(userItem.created_at)  }}
+                    </td>
+
+                    <td>
+                        {{ userItem.role  }}
                     </td>
                 </tr>
             </tbody>

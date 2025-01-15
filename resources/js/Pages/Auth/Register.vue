@@ -10,6 +10,7 @@ const form = useForm({
     password: "",
     password_confirmation: "",
     avatar: null,
+    role: 'Admin'
 });
 
 const submit = () => {

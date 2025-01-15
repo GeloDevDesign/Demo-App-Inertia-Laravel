@@ -29,6 +29,7 @@ class AuthController extends Controller
                 'max:300',
                 'mimes:jpeg,png,jpg,gif,svg'
             ],
+            'role' => ['string'],
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
         ]);
 

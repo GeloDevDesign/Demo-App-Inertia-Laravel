@@ -1,25 +1,8 @@
 <script setup>
 import { watch } from "vue";
 import { useUserSearchStore } from "../../stores/search.js";
-import { router } from "@inertiajs/vue3";
-import debounce from "lodash/debounce";
-
 const store = useUserSearchStore();
-
-const debouncedSearch = debounce(() => {
-    console.log(
-        "Sending search and filter:",
-        store.searchValue,
-        store.filterValue
-    ); // Debugging
-    router.get(
-        "/",
-        { search: store.searchValue, filter: store.filterValue },
-        { preserveState: true }
-    );
-}, 600);
-
-watch(() => [store.searchValue, store.filterValue], debouncedSearch, {
+watch(() => [store.searchValue, store.filterValue], store.debouncedSearch, {
     deep: true,
 });
 </script>
@@ -30,17 +13,14 @@ watch(() => [store.searchValue, store.filterValue], debouncedSearch, {
             v-model="store.filterValue"
             class="select select-bordered w-full max-w-xs"
         >
-            <option disabled selected>Select Item</option>
-            <option>Angelo</option>
-            <option>Greedo</option>
+            <option selected value="">All</option>
+            <option value="Admin">Admin</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Guest">Guest</option>
+            <option value="User">User</option>
         </select>
         <label class="input input-bordered flex items-center gap-2">
-            <input
-                v-model="store.searchValue"
-                type="text"
-                class="grow max-w-lg"
-                placeholder="Search"
-            />
+            <input v-model="store.searchValue" type="text" class="grow" placeholder="Search" />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
