@@ -5,6 +5,7 @@ import navLinks from "../Components/navLink.vue";
 import Layout from "../Shared/Layout.vue";
 import pagination from "../Components/pagination.vue"
 import { useHelperStore } from "../../stores/helper.js";
+import searchbar from "../Components/searchbar.vue";
 
 const store = useHelperStore();
 
@@ -17,7 +18,9 @@ defineProps({
 
 <template>
     <Head :title="$page.component"> </Head>
-
+        <div class="flex justify-end mb-4">
+            <searchbar/>
+        </div>
     <div class="overflow-x-auto bg-base-100 h-4/5">
         <table class="table table-pin-rows">
             <!-- head -->

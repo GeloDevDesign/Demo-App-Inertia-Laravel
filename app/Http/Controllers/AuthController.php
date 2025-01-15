@@ -85,7 +85,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             request()->session()->regenerate();
             RateLimiter::clear($key);  // Clear attempts on successful login
-            return redirect()->route('home');
+            return redirect()->route('home')->with('green','Welcome bisaya');
         }
 
         RateLimiter::hit($key);  // Increment attempts on failed login
