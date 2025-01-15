@@ -9,6 +9,7 @@ import NProgress from "nprogress";
 import Layout from "./Pages/Shared/Layout.vue";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 
+
 const pinia = createPinia();
 router.on("start", () => NProgress.start());
 router.on("finish", () => NProgress.done());
