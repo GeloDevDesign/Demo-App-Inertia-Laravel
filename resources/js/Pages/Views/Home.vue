@@ -40,9 +40,8 @@ const getDate = (date) => {
                                     <img
                                         class="avatar"
                                         :src="
-                                            $page.props.auth.user.avatar
-                                                ? 'storage/' +
-                                                  $page.props.auth.user.avatar
+                                           userItem.avatar !== null
+                                                ? `storage/${userItem.avatar}`
                                                 : 'storage/avatars/default-image.jpg'
                                         "
                                         alt="user-image"
@@ -52,7 +51,7 @@ const getDate = (date) => {
                             <div>
                                 <div class="font-bold">{{ userItem.name }}</div>
                                 <div class="text-sm opacity-50">
-                                    {{ userItem.email }}
+                                    {{ userItem.email }} 
                                 </div>
                             </div>
                         </div>
