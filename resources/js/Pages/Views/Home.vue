@@ -9,10 +9,12 @@ import searchbar from "../Components/searchbar.vue";
 
 const store = useHelperStore();
 
-defineProps({
+const props = defineProps({
     users: Object,
+    searchTerm: String,
 });
 
+store.searchValue = props.searchTerm || ""; 
 
 </script>
 

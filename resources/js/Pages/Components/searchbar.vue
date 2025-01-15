@@ -1,21 +1,46 @@
 <script setup>
-import { watch } from 'vue';
+import { watch } from "vue";
 import { useUserSearchStore } from "../../stores/search.js";
-import {router} from '@inertiajs/vue3' ;
+import { router } from "@inertiajs/vue3";
+import debounce from "lodash/debounce";
+
 const store = useUserSearchStore();
 
+const debouncedSearch = debounce(() => {
+    console.log(
+        "Sending search and filter:",
+        store.searchValue,
+        store.filterValue
+    ); // Debugging
+    router.get(
+        "/",
+        { search: store.searchValue, filter: store.filterValue },
+        { preserveState: true }
+    );
+}, 600);
 
-
-watch(() => store.searchValue, () => {
-              router.get('/',{searchValue})
-        });
-
+watch(() => [store.searchValue, store.filterValue], debouncedSearch, {
+    deep: true,
+});
 </script>
 
 <template>
-    <div>
+    <div class="flex items-center gap-2">
+        <select
+            v-model="store.filterValue"
+            class="select select-bordered w-full max-w-xs"
+        >
+            <option disabled selected>Select Item</option>
+            <option>Angelo</option>
+            <option>Greedo</option>
+        </select>
         <label class="input input-bordered flex items-center gap-2">
-            <input  v-model="store.searchValue" type="text" class="grow" placeholder="Search" />
+            <input
+                v-model="store.searchValue"
+                type="text"
+                class="grow max-w-lg"
+                placeholder="Search"
+            />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"

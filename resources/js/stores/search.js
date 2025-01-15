@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 
+
 export const useUserSearchStore = defineStore("search", {
     state: () => ({
-        searchValue: null, // State property
+        searchValue: null,
+        filterValue: null // State property
     }),
     getters: {},
     actions: {},
