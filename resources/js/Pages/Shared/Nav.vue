@@ -11,7 +11,7 @@ const { navLinks, isCollapse } = storeToRefs(store);
 <template>
     <section
         class="py-2 px-2 flex flex-col justify-between h-full items-center transition-all duration-100 ease-in-out"
-        :class="isCollapse ? 'w-52' : 'w-16'"
+        :class="isCollapse ? 'w-56' : 'w-16'"
     >
         <div class="flex flex-col items-center w-full">
             <div class="w-full flex items-center gap-2 border-b-[1px] pb-4">
@@ -32,7 +32,7 @@ const { navLinks, isCollapse } = storeToRefs(store);
                 <p v-if="isCollapse" class="font-semibold">Agenda Pro</p>
             </div>
 
-            <div class="w-full border-b-[1px] justify-between flex">
+            <div class="w-full border-b-[1px]  justify-between flex">
                 <div class="flex justify-start items-center gap-4 py-4">
                     <div class="avatar placeholder">
                         <div

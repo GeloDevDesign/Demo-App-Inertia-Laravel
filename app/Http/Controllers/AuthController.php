@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -45,9 +46,12 @@ class AuthController extends Controller
         $validatedAttributes['password'] = bcrypt($validatedAttributes['password']);
 
         try {
+            
             $user = User::create($validatedAttributes);
+            event(new Registered($user));
             Auth::login($user);
             return redirect()->route('home');
+
         } catch (\Exception $e) {
             Log::error('User registration failed', ['error' => $e->getMessage()]);
             return back()->withErrors(['email' => 'Registration failed. Please try again.']);
@@ -86,7 +90,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             request()->session()->regenerate();
             RateLimiter::clear($key);  // Clear attempts on successful login
-            return redirect()->route('home')->with('green','Welcome bisaya');
+            return redirect()->route('home')->with('green', 'Welcome bisaya');
         }
 
         RateLimiter::hit($key);  // Increment attempts on failed login
@@ -105,6 +109,4 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
-
-    
 }

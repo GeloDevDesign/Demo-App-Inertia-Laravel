@@ -10,12 +10,12 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
             },
         },
     },
     plugins: [require("daisyui")],
     daisyui: {
-        themes: ["night","light"],
+        themes: ["night", "light"],
     },
 };

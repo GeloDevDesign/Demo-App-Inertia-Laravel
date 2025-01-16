@@ -8,7 +8,7 @@
     @routes
 </head>
 
-<body> 
+<body class="font-Montserrat"> 
     @inertia
     <!-- <div class="app" data-page="{{ json_encode($page)}"></div> -->
 </body>

@@ -9,7 +9,7 @@ const store = userSideNavStore();
 <template>
     <section
         class="p-4  flex transition-all duration-100 ease-in-out h-full bg-base-200"
-        :class="store.isCollapse ? 'ml-52' : 'ml-16'"
+        :class="store.isCollapse ? 'ml-56' : 'ml-16'"
     >
         <header class="fixed top-0 bottom-0 left-0  ">
             <Nav />

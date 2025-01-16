@@ -8,19 +8,10 @@ watch(() => [store.searchValue, store.filterValue], store.debouncedSearch, {
 </script>
 
 <template>
-    <div class="flex items-center gap-2">
-        <select
-            v-model="store.filterValue"
-            class="select select-bordered w-full max-w-xs"
-        >
-            <option selected value="">All</option>
-            <option value="Admin">Admin</option>
-            <option value="Moderator">Moderator</option>
-            <option value="Guest">Guest</option>
-            <option value="User">User</option>
-        </select>
-        <label class="input input-bordered flex items-center gap-2">
-            <input v-model="store.searchValue" type="text" class="grow" placeholder="Search" />
+    <div class="flex items-center  join">
+        
+        <label class="input input-bordered flex items-center gap-2 join-item">
+            <input v-model="store.searchValue" type="text" class="grow " placeholder="Search" />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -34,5 +25,15 @@ watch(() => [store.searchValue, store.filterValue], store.debouncedSearch, {
                 />
             </svg>
         </label>
+        <select
+            v-model="store.filterValue"
+            class="select select-bordered w-full max-w-xs join-item"
+        >
+            <option selected value="">All</option>
+            <option value="Admin">Admin</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Guest">Guest</option>
+            <option value="User">User</option>
+        </select>
     </div>
 </template>
