@@ -15,8 +15,6 @@ const submit = () => {
     form.post(route("verification.send"));
 };
 
-
-
 onMounted(() => {
     submit();
 });
