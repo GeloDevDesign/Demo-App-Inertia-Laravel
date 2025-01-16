@@ -12,7 +12,7 @@ const props = defineProps({
 
 const isActive = computed(() => {
     return page.url === props.componenName
-        ? "btn-active btn-ghost"
+        ? "btn-active btn-primary"
         : "btn-ghost";
 });
 </script>

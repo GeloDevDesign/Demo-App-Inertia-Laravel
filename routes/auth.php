@@ -13,6 +13,10 @@ Route::get('/register', function () {
   ]);
 })->name('register');
 
+Route::get('/email/verify', function () {
+  return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::post('/register-test', [AuthController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

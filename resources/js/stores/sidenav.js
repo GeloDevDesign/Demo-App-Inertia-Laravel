@@ -45,6 +45,8 @@ export const userSideNavStore = defineStore("sideNav", {
               </svg>
           `,
             },
+
+           
         ],
 
         isCollapse: true,

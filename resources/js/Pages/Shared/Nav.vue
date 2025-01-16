@@ -165,6 +165,7 @@ const { navLinks, isCollapse } = storeToRefs(store);
                     </template>
                     {{ link.label }}
                 </navLink>
+                
             </div>
         </div>
 
