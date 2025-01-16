@@ -46,12 +46,11 @@ class AuthController extends Controller
         $validatedAttributes['password'] = bcrypt($validatedAttributes['password']);
 
         try {
-            
+
             $user = User::create($validatedAttributes);
             event(new Registered($user));
             Auth::login($user);
-            return redirect()->route('home');
-
+        return redirect()->route('home');
         } catch (\Exception $e) {
             Log::error('User registration failed', ['error' => $e->getMessage()]);
             return back()->withErrors(['email' => 'Registration failed. Please try again.']);

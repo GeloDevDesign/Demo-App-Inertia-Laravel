@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { ref, onMounted } from "vue";
+
 defineOptions({
     layout: null,
 });
@@ -15,9 +15,11 @@ const submit = () => {
     form.post(route("verification.send"));
 };
 
-onMounted(() => {
-    submit();
-});
+// onMounted(() => {
+//     submit();
+// });
+
+
 </script>
 
 <template>
