@@ -3,7 +3,7 @@ import { ref } from "vue";
 import Nav from "../Shared/Nav.vue";
 import navLinks from "../Components/navLink.vue";
 import Layout from "../Shared/Layout.vue";
-import pagination from "../Components/pagination.vue"
+import pagination from "../Components/pagination.vue";
 import { useHelperStore } from "../../stores/helper.js";
 import searchbar from "../Components/searchbar.vue";
 
@@ -14,23 +14,24 @@ const props = defineProps({
     searchTerm: String,
 });
 
-store.searchValue = props.searchTerm || ""; 
-
+store.searchValue = props.searchTerm || "";
 </script>
 
 <template>
     <Head :title="$page.component"> </Head>
-        <div class="flex justify-end mb-4">
-            <searchbar/>
-        </div>
+    <div class="flex justify-end mb-4">
+        <searchbar />
+    </div>
     <div class="overflow-x-auto bg-base-100 h-4/5 rounded-lg">
-        <table class="table table-pin-rows">
+        <table class="table table-pin-rows ">
             <!-- head -->
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +44,7 @@ store.searchValue = props.searchTerm || "";
                                     <img
                                         class="avatar"
                                         :src="
-                                           userItem.avatar !== null
+                                            userItem.avatar !== null
                                                 ? `storage/${userItem.avatar}`
                                                 : 'storage/avatars/default-image.jpg'
                                         "
@@ -54,23 +55,27 @@ store.searchValue = props.searchTerm || "";
                             <div>
                                 <div class="font-bold">{{ userItem.name }}</div>
                                 <div class="text-sm opacity-50">
-                                    {{ userItem.email }} 
+                                    {{ userItem.email }}
                                 </div>
                             </div>
                         </div>
                     </td>
                     <td>
-                        {{ store.getDate(userItem.created_at)  }}
+                        {{ store.getDate(userItem.created_at) }}
                     </td>
-
                     <td>
-                        {{ userItem.role  }}
+                        {{ userItem.role }}
+                    </td>
+                    <td>
+                        <div class="badge badge-primary badge-outline">neutral</div>
+                    </td>
+                    <td>
+                        <button class="btn btn-xs">Update</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <pagination :users="users"/>
+    <pagination :users="users" />
     <!-- Refactored pagination -->
-   
 </template>

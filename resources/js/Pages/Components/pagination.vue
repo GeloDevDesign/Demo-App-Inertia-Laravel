@@ -7,7 +7,7 @@ defineProps({
 
 </script>
 <template>
-    <div class="flex justify-between items-center mt-4 ">
+    <div class="flex justify-between items-center mt-2 ">
         <div class="text-sm text-gray-600">
             Showing page {{ users.current_page }} of {{ users.last_page }}
         </div>
