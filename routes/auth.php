@@ -20,15 +20,11 @@ Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->nam
 
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
-    ->middleware(['auth', 'throttle:6,1'])  // Remove 'signed' middleware, add 'auth'
-    ->name('verification.send');
+  ->middleware(['auth', 'throttle:6,1'])  // Remove 'signed' middleware, add 'auth'
+  ->name('verification.send');
 
-
-
-Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
-    ->middleware(['signed'])
-    ->middleware(['throttle:6,1'])
-    ->name('verification.send');
+  
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware('signed')->name('verification.verify');
 
 
 Route::post('/register-test', [AuthController::class, 'store']);

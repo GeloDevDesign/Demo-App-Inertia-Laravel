@@ -30,6 +30,13 @@ class EmailVerificationController extends Controller
 
     public function resend(Request $request)
     {
+
+        if (auth()->check()) {
+            if (auth()->user()->hasVerifiedEmail()) {
+                return redirect()->route('home');
+            }
+        }
+
         $request->user()->sendEmailVerificationNotification();
         return back()->with('status', 'Verification link sent!');
     }

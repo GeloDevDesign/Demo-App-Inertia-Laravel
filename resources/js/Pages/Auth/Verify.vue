@@ -31,16 +31,15 @@ const submit = () => {
         <div class="card bg-neutral text-neutral-content max-w-96">
             <div class="card-body items-center text-center gap-4">
                 <h2 class="card-title">Confirm Your Email</h2>
-                <p v-if="status">
-                    {{ status }}
-                </p>
-                <p v-else>
+                
+                <p>
                  
                     We've sent a confirmation link to your email address. Please
                     check your inbox and click the link to confirm your email.
                 </p>
                
-                    <form @submit.prevent="submit" action="" class="card-actions">
+                    <form @submit.prevent="submit" action="" class="card-actions flex flex-col items-center">
+                        <span class="text-sm text-success font-semibold" v-if="status">{{ status }}</span>
                         <button
                             :disabled="form.processing"
                             class="btn btn-primary"
