@@ -13,10 +13,8 @@ class EmailVerificationController extends Controller
 
     public function notice()
     {
-        if (auth()->check()) {
-            if (auth()->user()->hasVerifiedEmail()) {
-                return redirect()->route('home');
-            }
+        if (auth()->check() && auth()->user()->hasVerifiedEmail()) {
+            return redirect()->route('home');
         }
 
         return Inertia::render('Auth/Verify', ['status' => session('status')]);
@@ -25,16 +23,15 @@ class EmailVerificationController extends Controller
     public function handler(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect()->route('home');
+        $userName = auth()->user()->name;
+        return redirect()->route('home')->with('greetings', "Welcome to our app, $userName!");
     }
 
     public function resend(Request $request)
     {
 
-        if (auth()->check()) {
-            if (auth()->user()->hasVerifiedEmail()) {
-                return redirect()->route('home');
-            }
+        if (auth()->check() && auth()->user()->hasVerifiedEmail()) {
+            return redirect()->route('home');
         }
 
         $request->user()->sendEmailVerificationNotification();
