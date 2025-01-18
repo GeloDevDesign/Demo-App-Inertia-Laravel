@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
 
+
 class EmailVerificationController extends Controller
 {
     public function notice()
@@ -29,6 +30,8 @@ class EmailVerificationController extends Controller
 
     public function resend(Request $request)
     {
+        abort(429);
+        
         if (auth()->check() && auth()->user()->hasVerifiedEmail()) {
             return redirect()->route('home');
         }
