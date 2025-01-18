@@ -4,9 +4,6 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EmailVerificationController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-
 
 Route::inertia('/login', 'Auth/Login')->name('login');
 
@@ -20,13 +17,17 @@ Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->nam
 
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
-  ->middleware(['auth', 'throttle:6,1'])  // Remove 'signed' middleware, add 'auth'
+  ->middleware(['auth', 'limited_request:2,10'])
   ->name('verification.send');
 
-  
-Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware('signed')->name('verification.verify');
+
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware('signed')->name('verification.verify')->middleware(['auth', 'limited_request:2,10','signed']);
 
 
 Route::post('/register-test', [AuthController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/forgot-password', function () {
+  return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');

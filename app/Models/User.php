@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -48,5 +46,16 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if the user has recently sent a verification email.
+     *
+     * @return bool
+     */
+    public function hasRecentlySentVerificationEmail(): bool
+    {
+        return $this->email_verified_at === null &&
+            $this->updated_at->diffInMinutes(now()) < 10; // Adjust the time limit as needed
     }
 }
