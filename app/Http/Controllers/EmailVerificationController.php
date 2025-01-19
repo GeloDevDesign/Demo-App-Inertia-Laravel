@@ -30,7 +30,7 @@ class EmailVerificationController extends Controller
 
     public function resend(Request $request)
     {
-        abort(429);
+        // abort(429);
         
         if (auth()->check() && auth()->user()->hasVerifiedEmail()) {
             return redirect()->route('home');

@@ -3,6 +3,8 @@ import { Link } from "@inertiajs/vue3";
 import navLink from "../Components/navLink.vue";
 import inputTag from "../Components/input.vue";
 import { router, useForm } from "@inertiajs/vue3";
+import titlePage from "../Components/titlePage.vue";
+import PrimaryButton from "../Components/PrimaryButton.vue";
 
 defineOptions({
     layout: null,
@@ -19,6 +21,8 @@ const submit = () => {
         onError: () => form.reset("password"),
     });
 };
+
+
 </script>
 
 <template>
@@ -28,9 +32,7 @@ const submit = () => {
 
     <div class="flex justify-center items-center h-full flex-col gap-6">
         <div>
-            <span class="font-semibold text-2xl text-primary">
-                Welcome Back</span
-            >
+            <titlePage title="Welcome Back !"/>
         </div>
         <div class="w-11/12 sm:max-w-sm md:max-w-md lg:w-full">
             <form
@@ -68,16 +70,16 @@ const submit = () => {
                     </div>
                     <div class="flex justify-center">
                         <p class="text-sm">
-                            Don't have an account?
                             <Link
                                 class="link text-blue-500 font-bold"
-                                :href="route('register')"
+                                :href="route('password.request')"
                             >
-                                Sign up here.
+                                Forgot Password ?
                             </Link>
                         </p>
                     </div>
                 </div>
+                <!-- <PrimaryButton/> -->
                 <button
                     type="submit"
                     :disabled="form.processing"
@@ -86,6 +88,17 @@ const submit = () => {
                     Login
                 </button>
             </form>
+            <div class="flex justify-center">
+                <p class="text-sm">
+                    Don't have an account?
+                    <Link
+                        class="link text-blue-500 font-bold"
+                        :href="route('register')"
+                    >
+                        Sign up here.
+                    </Link>
+                </p>
+            </div>
         </div>
     </div>
 </template>

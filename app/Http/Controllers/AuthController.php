@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Events\Registered;
 
+
 class AuthController extends Controller
 {
     public function __construct()
@@ -50,7 +51,7 @@ class AuthController extends Controller
             $user = User::create($validatedAttributes);
             event(new Registered($user));
             Auth::login($user);
-        return redirect()->route('home');
+            return redirect()->route('home');
         } catch (\Exception $e) {
             Log::error('User registration failed', ['error' => $e->getMessage()]);
             return back()->withErrors(['email' => 'Registration failed. Please try again.']);
@@ -107,5 +108,18 @@ class AuthController extends Controller
         request()->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    public function reset_password()
+    {
+        request()->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            request()->only('email')
+        );
+        
+        return $status === Password::ResetLinkSent
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 }

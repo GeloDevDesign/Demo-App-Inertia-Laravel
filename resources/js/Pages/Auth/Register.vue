@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
 import NavLink from "../Components/navLink.vue";
 import inputLayout from "../Components/input.vue";
+import titlePage from "../Components/titlePage.vue";
 
 const form = useForm({
     name: "",
@@ -37,7 +38,7 @@ defineProps({
 <template>
     <Head title="Register"></Head>
     <div class="flex flex-col items-center justify-center w-full h-full">
-        <h1 class="text-2xl font-semibold text-primary">Registration Page</h1>
+        <titlePage title="Registration"/>
 
         <div
             class="flex items-center justify-center w-11/12 sm:max-w-sm md:max-w-md lg:w-full"

@@ -20,15 +20,14 @@ const isActive = computed(() => {
 <template>
     <div class="w-full">
         <Link
-            class="btn w-full btn-sm font-normal flex justify-start "
+            class="btn w-full btn-sm font-normal flex justify-start"
             cache-for="1m"
             :class="isActive"
             prefetch
             :href="route(props.page)"
         >
-           
             <slot name="icon" />
-            <slot v-if="collapse"/> 
+            <slot v-if="collapse" />
         </Link>
     </div>
 </template>
