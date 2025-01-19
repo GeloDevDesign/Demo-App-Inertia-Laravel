@@ -1,44 +1,44 @@
 import { defineStore } from "pinia";
 import { useForm } from "@inertiajs/vue3";
 
-
-export const useForgotPasswordStore = defineStore("fogot-pass", {
+export const useForgotPasswordStore = defineStore("forgot-pass", {
     state: () => ({
-        currentSteps: 4,
-        emailValue: {
+        currentSteps: 1,
+        emailValue: useForm({
             email: "",
-        },
-        authOTP: {
-            otp: null,
-        },
-        newPasswordValue: {
-            password: null,
-            password_confirmation: null,
-        },
+        }),
+        authOTP: useForm({
+            otp: "",
+        }),
+        newPasswordValue: useForm({
+            password: "",
+            password_confirmation: "",
+        }),
     }),
-    getters: {},
     actions: {
-        verifyEmail: () => {
-            emailValue.post("forgot-password", {
-                onSuccess: () => emailValue.reset("email"),
+        verifyEmail() {
+            this.emailValue.post(route("password.email"), {
                 onSuccess: () => {
+                    this.emailValue.reset("email");
                     this.currentSteps++;
                 },
             });
         },
-        validateOTP: () => {
-            authOTP.post("forgot-password", {
-                onError: () => form.authOTP("otp"),
+        validateOTP() {
+            this.authOTP.post(route("verify.otp"), {
                 onSuccess: () => {
+                    this.authOTP.reset("otp");
                     this.currentSteps++;
                 },
             });
         },
-        validateNewPassword: () => {
-            newPasswordValue.post("forgot-password", {
-                onError: () =>
-                    newPasswordValue.reset("password", "password_confirmation"),
+        validateNewPassword() {
+            this.newPasswordValue.post(route("password.update"), {
                 onSuccess: () => {
+                    this.newPasswordValue.reset(
+                        "password",
+                        "password_confirmation"
+                    );
                     this.currentSteps++;
                 },
             });
