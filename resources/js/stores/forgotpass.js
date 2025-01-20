@@ -23,7 +23,6 @@ export const useForgotPasswordStore = defineStore("forgot-pass", {
                     this.currentSteps++;
                 },
                 onError: (errors) => {
-                    console.error("Email verification failed:", errors);
                     this.currentSteps = 1;
                 },
             });
@@ -36,7 +35,6 @@ export const useForgotPasswordStore = defineStore("forgot-pass", {
                 },
 
                 onError: (errors) => {
-                    console.error("Email verification failed:", errors);
                     this.currentSteps = 2;
                 },
             });
@@ -49,7 +47,6 @@ export const useForgotPasswordStore = defineStore("forgot-pass", {
                     this.currentSteps++;
                 },
                 onError: (errors) => {
-                    console.error("Password update failed:", errors);
                     this.currentSteps = 3;
                 },
             });
