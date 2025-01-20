@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('otp')->nullable()->after('password');
+            $table->timestamp('otp_expires_at')->nullable()->after('otp');
             $table->rememberToken();
             $table->timestamps();
         });
