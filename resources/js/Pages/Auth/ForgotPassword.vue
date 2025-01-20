@@ -15,21 +15,6 @@ const { currentSteps, emailValue, authOTP, newPasswordValue } =
 defineOptions({
     layout: null,
 });
-
-// Handle email verification form
-const handleEmailSubmit = () => {
-    store.verifyEmail();
-};
-
-// Handle OTP verification form
-const handleOTPSubmit = () => {
-    store.validateOTP();
-};
-
-// Handle new password form
-const handlePasswordSubmit = () => {
-    store.validateNewPassword();
-};
 </script>
 
 <template>
@@ -50,7 +35,7 @@ const handlePasswordSubmit = () => {
         <!-- Email Form -->
         <div v-if="currentSteps <= 1" class="w-full max-w-md">
             <form
-                @submit.prevent="handleEmailSubmit"
+                @submit.prevent="store.verifyEmail"
                 method="POST"
                 class="space-y-6"
             >
@@ -61,9 +46,9 @@ const handlePasswordSubmit = () => {
                     name="email"
                     pagename="Email"
                 />
+               
                 <PrimaryButton
                     type="submit"
-                    routeName="password.request"
                     buttonName="Verify Email"
                     :disabled="emailValue.processing"
                 />
@@ -82,7 +67,7 @@ const handlePasswordSubmit = () => {
         <!-- OTP Form -->
         <div v-if="currentSteps === 2" class="w-full max-w-md">
             <form
-                @submit.prevent="handleOTPSubmit"
+                @submit.prevent="store.validateOTP"
                 method="POST"
                 class="space-y-6"
             >
@@ -105,7 +90,7 @@ const handlePasswordSubmit = () => {
         <!-- New Password Form -->
         <div v-if="currentSteps === 3" class="w-full max-w-md">
             <form
-                @submit.prevent="handlePasswordSubmit"
+                @submit.prevent="store.validateNewPassword"
                 method="POST"
                 class="space-y-6"
             >

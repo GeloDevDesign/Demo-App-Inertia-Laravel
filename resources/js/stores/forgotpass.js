@@ -8,11 +8,11 @@ export const useForgotPasswordStore = defineStore("forgot-pass", {
             email: "",
         }),
         authOTP: useForm({
-            otp: "",
+            otp: null,
         }),
         newPasswordValue: useForm({
-            password: "",
-            password_confirmation: "",
+            password: null,
+            password_confirmation: null,
         }),
     }),
     actions: {
@@ -22,24 +22,35 @@ export const useForgotPasswordStore = defineStore("forgot-pass", {
                     this.emailValue.reset("email");
                     this.currentSteps++;
                 },
+                onError: (errors) => {
+                    console.error("Email verification failed:", errors);
+                    this.currentSteps = 1;
+                },
             });
         },
         validateOTP() {
-            this.authOTP.post(route("verify.otp"), {
+            this.authOTP.post(route("password.reset"), {
                 onSuccess: () => {
                     this.authOTP.reset("otp");
                     this.currentSteps++;
+                },
+
+                onError: (errors) => {
+                    console.error("Email verification failed:", errors);
+                    this.currentSteps = 2;
                 },
             });
         },
         validateNewPassword() {
             this.newPasswordValue.post(route("password.update"), {
+                preserveScroll: true,
                 onSuccess: () => {
-                    this.newPasswordValue.reset(
-                        "password",
-                        "password_confirmation"
-                    );
+                    this.newPasswordValue.reset();
                     this.currentSteps++;
+                },
+                onError: (errors) => {
+                    console.error("Password update failed:", errors);
+                    this.currentSteps = 3;
                 },
             });
         },
