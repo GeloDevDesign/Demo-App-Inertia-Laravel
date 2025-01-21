@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OTPverify;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,33 +15,28 @@ class ResetPasswordController extends Controller
     /**
      * Step 1: Request OTP (verify email & generate/send OTP)
      */
-    public function requestOtp(Request $request)
+    public function verify_email(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'email' => 'required|email|exists:users,email',
         ]);
 
-        $user = User::where('email', $request->email)->firstOrFail();
+        $user = User::where('email', $validatedData['email'])->firstOrFail();
 
-        // Generate a 6-digit numeric OTP or an alphanumeric code of your choice
         $otp = rand(100000, 999999);
-        // Alternatively: $otp = Str::upper(Str::random(6));
-
-        // Set OTP expiration (e.g., 10 minutes from now)
         $expiry = Carbon::now()->addMinutes(10);
 
-        // Store the OTP and expiration in the user record
         $user->otp = $otp;
         $user->otp_expires_at = $expiry;
         $user->save();
 
-        // Send OTP via email (example using raw text email)
-        Mail::raw("Your OTP is: {$otp}", function ($message) use ($user) {
-            $message->to($user->email)
-                ->subject('Your Password Reset OTP');
-        });
-        return back()->with('message', 'An OTP has been sent to your email.');
+        Mail::to($user->email)->send(new OTPverify($otp));
+        
+        return back()->with('status', 'An OTP has been sent to your email.');
+
+
     }
+
 
     /**
      * Step 2: Verify the OTP
@@ -60,17 +56,16 @@ class ResetPasswordController extends Controller
             ], 404);
         }
 
-        // Check if the OTP matches and is not expired
+        
         if (
             $user->otp === $request->otp &&
             Carbon::now()->lessThanOrEqualTo($user->otp_expires_at)
         ) {
             return response()->json([
-                'message' => 'OTP verified successfully.',
+                'status' => 'OTP verified successfully.',
             ]);
         }
-        return back()->with('message', 'Invalid or expired OTP.');
-      
+        return back()->with('status', 'Invalid or expired OTP.');
     }
 
     /**
@@ -92,7 +87,7 @@ class ResetPasswordController extends Controller
             ], 404);
         }
 
-       
+
         if (
             $user->otp !== $request->otp ||
             Carbon::now()->greaterThan($user->otp_expires_at)

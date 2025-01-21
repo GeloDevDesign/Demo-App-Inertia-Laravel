@@ -37,7 +37,7 @@ const submit = () => {
 
     <div class="flex justify-center h-full items-center p-10">
         <div class="card bg-neutral text-neutral-content max-w-96">
-            <div class="card-body items-center text-center gap-4">
+            <div class="card-body items-center text-center gap-6">
                 <h2 class="card-title">Confirm Your Email</h2>
 
                 <p>

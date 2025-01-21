@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EmailVerificationController;
@@ -42,7 +43,7 @@ Route::get('/forgot-password', function () {
   ]);
 })->middleware('guest')->name('password.request');
 
-Route::post('/forgot-password', [AuthController::class, 'verify_email'])
+Route::post('/forgot-password', [ResetPasswordController::class, 'verify_email'])
   ->middleware(['guest', 'throttle:6,1'])
   ->name('password.email');
 

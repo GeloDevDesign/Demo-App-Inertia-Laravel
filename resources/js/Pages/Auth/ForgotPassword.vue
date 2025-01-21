@@ -15,6 +15,10 @@ const { currentSteps, emailValue, authOTP, newPasswordValue } =
 defineOptions({
     layout: null,
 });
+
+defineProps({
+    status: String,
+});
 </script>
 
 <template>
@@ -46,7 +50,7 @@ defineOptions({
                     name="email"
                     pagename="Email"
                 />
-               
+
                 <PrimaryButton
                     type="submit"
                     buttonName="Verify Email"
@@ -78,12 +82,21 @@ defineOptions({
                     name="otp"
                     pagename="OTP"
                 />
-                <PrimaryButton
-                    type="submit"
-                    routeName="verify.otp"
-                    buttonName="Verify OTP"
-                    :disabled="authOTP.processing"
-                />
+
+                <div class="flex flex-col gap-2">
+                    <PrimaryButton
+                        type="submit"
+                        routeName="verify.otp"
+                        buttonName="Verify OTP"
+                        :disabled="authOTP.processing"
+                    />
+                    <span
+                        v-if="status"
+                        class="text-sm font-semibold text-center text-success"
+                    >
+                        {{ status }}
+                    </span>
+                </div>
             </form>
         </div>
 
@@ -114,6 +127,12 @@ defineOptions({
                     buttonName="Update Password"
                     :disabled="newPasswordValue.processing"
                 />
+                <span
+                    v-if="status"
+                    class="text-sm font-semibold text-center text-success"
+                >
+                    {{ status }}
+                </span>
             </form>
         </div>
 
