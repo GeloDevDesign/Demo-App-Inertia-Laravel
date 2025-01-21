@@ -23,10 +23,10 @@ Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->nam
   ->middleware('auth');
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
-  ->middleware(['auth', 'limited_request:2,10'])
+  ->middleware(['auth', 'limited_request:2,10'])  
   ->name('verification.send');
 
-Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware('signed')->name('verification.verify')->middleware(['auth', 'limited_request:2,5', 'signed']);
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware('signed')->name('verification.verify')->middleware(['auth', 'limited_request:3,5', 'signed']);
 
 
 Route::post('/register-test', [AuthController::class, 'store']);
