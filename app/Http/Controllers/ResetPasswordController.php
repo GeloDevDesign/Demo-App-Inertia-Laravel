@@ -7,8 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Inertia\Inertia;
+
 
 class ResetPasswordController extends Controller
 {
@@ -20,28 +21,30 @@ class ResetPasswordController extends Controller
         $validatedData = $request->validate([
             'email' => 'required|email|exists:users,email',
         ]);
-
+        
         $user = User::where('email', $validatedData['email'])->firstOrFail();
 
         $otp = rand(100000, 999999);
         $expiry = Carbon::now()->addMinutes(10);
-
+        
         $user->otp = $otp;
         $user->otp_expires_at = $expiry;
         $user->save();
+        
 
         Mail::to($user->email)->send(new OTPverify($otp));
-        
-        return back()->with('status', 'An OTP has been sent to your email.');
 
-
+        return Inertia::render('Auth/ForgotPassword', [
+        'status' => 'An OTP has been sent to your email.',
+        'email' => $validatedData['email'],
+    ]);
     }
 
 
     /**
      * Step 2: Verify the OTP
      */
-    public function verifyOtp(Request $request)
+    public function verify_otp(Request $request)
     {
         $request->validate([
             'email' => 'required|email|exists:users,email',
@@ -56,7 +59,7 @@ class ResetPasswordController extends Controller
             ], 404);
         }
 
-        
+
         if (
             $user->otp === $request->otp &&
             Carbon::now()->lessThanOrEqualTo($user->otp_expires_at)
