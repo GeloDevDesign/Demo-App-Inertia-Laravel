@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordContract
 {
@@ -59,5 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordC
     {
         return $this->email_verified_at === null &&
             $this->updated_at->diffInMinutes(now()) < 10; // Adjust the time limit as needed
+    }
+
+    public function chirps(): HasMany
+    {
+        return $this->hasMany(Chirp::class);
     }
 }
