@@ -20,15 +20,13 @@ class ChirpController extends Controller
         //
         return Inertia::render('Views/Chirper/index', [
             'chirps' => Chirp::with('user:id,name')
-                ->where('user_id', auth()->id()) // Filter chirps by the current user's ID
+                ->where('user_id', auth()->id())
                 ->latest()
-                ->get()
-                ->map(function ($chirp) {
-                    $chirp->canEdit = auth()->user()->can(['update', $chirp, 'view', $chirp]); // Check policy
-                    return $chirp;
-                }),
+                ->paginate(10)
+               
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

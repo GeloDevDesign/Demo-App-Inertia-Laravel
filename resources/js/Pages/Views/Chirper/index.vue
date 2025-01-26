@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import pagination from "../../Components/pagination.vue";
 
 const props = defineProps({
     chirps: Object, // The list of chirps is passed as a prop
@@ -29,7 +30,7 @@ const props = defineProps({
                 </thead>
                 <tbody>
                     <tr
-                        v-for="(message, index) in props.chirps"
+                        v-for="(message, index) in props.chirps.data"
                         :key="message.id"
                     >
                         <th>{{ index + 1 }}</th>
@@ -39,7 +40,7 @@ const props = defineProps({
                         <td>
                             <!-- Use the canEdit field to show the Edit button -->
                             <Link
-                                v-if="message.canEdit"
+                              
                                 class="btn btn-sm btn-secondary"
                                 :href="route('chirps.edit', message.id)"
                             >
@@ -50,5 +51,6 @@ const props = defineProps({
                 </tbody>
             </table>
         </div>
+        <pagination :users="chirps" />
     </div>
 </template>
