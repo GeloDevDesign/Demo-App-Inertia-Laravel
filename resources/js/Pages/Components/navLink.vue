@@ -11,9 +11,12 @@ const props = defineProps({
 });
 
 const isActive = computed(() => {
-    return page.url === props.componenName
-        ? "btn-active btn-primary"
-        : "btn-ghost";
+    // If either page.url matches props.componentName or some other URL condition, make it active
+    if (page.url === props.componenName) {
+        return 'btn-active btn-primary';
+    } else {
+        return 'btn-ghost';
+    }
 });
 </script>
 

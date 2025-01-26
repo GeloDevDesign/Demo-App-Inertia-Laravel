@@ -1,20 +1,16 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
-const props = defineProps({
-    chirp: Object, // The chirp to edit is passed as a prop
-});
-
-// Initialize the form with the chirp data
+// Define the form with the required fields and initial values
 const form = useForm({
-    message: props.chirp.message,
+    message: "", // Field for the message (or any other data you want)
 });
 
-const updateForm = () => {
-    form.put(route("chirps.update", props.chirp.id), {
+const submitForm = () => {
+    form.post(route('chirps.store'), {
         onSuccess: () => {
-            console.log("Message updated successfully!");
+            console.log("Message created successfully!");
         },
         onError: (errors) => {
             console.log("Errors:", errors);
@@ -24,25 +20,25 @@ const updateForm = () => {
 </script>
 
 <template>
-    <Head :title="'Edit Message'" />
+    <Head :title="$page.component"> </Head>
     <div class="flex justify-end mb-4"></div>
 
     <div class="card bg-base-100 w-96 shadow-xl">
         <div class="card-body">
-            <h2 class="card-title">Edit Message</h2>
+            <h2 class="card-title">Create a New Message</h2>
             <!-- Message input -->
             <textarea
                 v-model="form.message"
-                placeholder="Edit your message"
+                placeholder="Type your message"
                 class="textarea textarea-bordered w-full max-w-xs mb-4"
             ></textarea>
             <div class="card-actions justify-end">
                 <button
                     class="btn btn-primary"
                     :disabled="form.processing"
-                    @click="updateForm"
+                    @click="submitForm"
                 >
-                    Update Message
+                    Create Message
                 </button>
             </div>
         </div>

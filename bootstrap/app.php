@@ -28,14 +28,14 @@ return Application::configure(basePath: dirname(__DIR__))
     })
 
     ->withExceptions(function (Exceptions $exceptions) {
-        // $exceptions->respond(function (Response $response) {
-        //     $statusCode = $response->getStatusCode();
-        //     if (in_array($statusCode, [400, 401, 403, 404, 408, 422, 426, 429, 500, 502, 503, 504, 405])) {
-        //         return Inertia::render('Components/errorsPage', [
-        //             'statusCode' => $statusCode
-        //         ]);
-        //     }
+        $exceptions->respond(function (Response $response) {
+            $statusCode = $response->getStatusCode();
+            if (in_array($statusCode, [400, 401, 403, 404, 408, 422, 426, 429, 500, 502, 503, 504, 405])) {
+                return Inertia::render('Components/errorsPage', [
+                    'statusCode' => $statusCode
+                ]);
+            }
 
-        //     return $response;
-        // });
+            return $response;
+        });
     })->create();

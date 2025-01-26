@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 
 
 class ChirpController extends Controller
@@ -18,7 +19,7 @@ class ChirpController extends Controller
     {
         //
         return Inertia::render('Views/Chirper/index', [
-            //
+            'chirps' => Chirp::with('user:id,name')->latest()->get(),
         ]);
     }
 
@@ -27,30 +28,31 @@ class ChirpController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Views/Chirper/create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
 
         $request->user()->chirps()->create($validated);
-
         return redirect(route('chirps.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Chirp $chirp)
+    public function show(Request $request, Chirp $chirp)
     {
         //
+
+
     }
 
     /**
@@ -58,7 +60,16 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        //
+        // Authorize the action
+        Gate::authorize('update', $chirp);
+
+        // Render the edit page and pass the chirp data 
+        return Inertia::render('Views/Chirper/Edit', [
+            'chirp' => [
+                'id' => $chirp->id,
+                'message' => $chirp->message,
+            ],
+        ]);
     }
 
     /**
@@ -66,7 +77,15 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
-        //
+        Gate::authorize('update', $chirp);
+
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $chirp->update($validated);
+
+        return redirect(route('chirps.index'))->with('success', 'Chirp updated successfully!');
     }
 
     /**
