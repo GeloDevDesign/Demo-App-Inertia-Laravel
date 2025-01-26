@@ -11,10 +11,23 @@ const form = useForm({
     message: props.chirp.message,
 });
 
+// Update the form
 const updateForm = () => {
     form.put(route("chirps.update", props.chirp.id), {
         onSuccess: () => {
             console.log("Message updated successfully!");
+        },
+        onError: (errors) => {
+            console.log("Errors:", errors);
+        },
+    });
+};
+
+// Delete the chirp
+const deleteForm = () => {
+    form.delete(route("chirps.destroy", props.chirp.id), {
+        onSuccess: () => {
+            console.log("Chirp deleted successfully!");
         },
         onError: (errors) => {
             console.log("Errors:", errors);
@@ -37,6 +50,16 @@ const updateForm = () => {
                 class="textarea textarea-bordered w-full max-w-xs mb-4"
             ></textarea>
             <div class="card-actions justify-end">
+                <!-- Delete Button -->
+                <button
+                    class="btn btn-error"
+                    :disabled="form.processing"
+                    @click="deleteForm"
+                >
+                    Delete
+                </button>
+
+                <!-- Update Button -->
                 <button
                     class="btn btn-primary"
                     :disabled="form.processing"

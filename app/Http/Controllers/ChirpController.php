@@ -23,8 +23,6 @@ class ChirpController extends Controller
                 ->where('user_id', auth()->id())
                 ->latest()
                 ->paginate(10)
-                
-               
         ]);
     }
 
@@ -97,8 +95,13 @@ class ChirpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chirp $chirp)
+    public function destroy(Chirp $chirp): RedirectResponse
     {
         //
+        Gate::authorize('delete', $chirp);
+
+        $chirp->delete();
+
+        return redirect(route('chirps.index'));
     }
 }

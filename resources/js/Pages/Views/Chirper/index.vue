@@ -38,8 +38,7 @@ const props = defineProps({
                         <td>{{ message.created_at }}</td>
                         <td>
                             <Link
-                               
-                                class="btn btn-sm btn-secondary"
+                                class="btn btn-sm btn-primary btn-outline"
                                 :href="route('chirps.edit', message.id)"
                             >
                                 Edit
