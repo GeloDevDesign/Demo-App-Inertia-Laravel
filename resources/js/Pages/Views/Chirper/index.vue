@@ -38,7 +38,7 @@ const props = defineProps({
                         <td>{{ message.created_at }}</td>
                         <td>
                             <Link
-                                v-if="message.canEdit"
+                               
                                 class="btn btn-sm btn-secondary"
                                 :href="route('chirps.edit', message.id)"
                             >
