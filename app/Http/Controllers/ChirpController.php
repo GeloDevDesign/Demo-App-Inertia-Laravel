@@ -62,11 +62,14 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $chirp)
+    public function edit(Request $request,Chirp $chirp)
     {
-        // Authorize the action
-        Gate::authorize('update', $chirp);
+        // if ($request->user()->cannot('update', $chirp)) {
+        //     abort(403);
+        // }
 
+        Gate::authorize('update', $chirp);
+        
         // Render the edit page and pass the chirp data 
         return Inertia::render('Views/Chirper/edit', [
             'chirp' => [
