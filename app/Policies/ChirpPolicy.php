@@ -19,10 +19,9 @@ class ChirpPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Chirp $chirp)
-    {   
-        // you can add role base auth here
-        return $user->id === $chirp->user_id; // Only the owner can view certain features (e.g., edit button)
+    public function view(User $user, Chirp $chirp): bool
+    {
+        return $chirp->user()->is($user);
     }
 
     /**
@@ -38,7 +37,7 @@ class ChirpPolicy
      */
     public function update(User $user, Chirp $chirp): bool
     {
-      return $user->id === $chirp->user_id; // Only the owner can update
+       return $chirp->user()->is($user);
     }
 
     /**
@@ -46,7 +45,7 @@ class ChirpPolicy
      */
     public function delete(User $user, Chirp $chirp): bool
     {
-        return $user->id === $chirp->user_id; // Only the owner can update
+        return false;
     }
 
     /**
@@ -54,7 +53,7 @@ class ChirpPolicy
      */
     public function restore(User $user, Chirp $chirp): bool
     {
-        return $user->id === $chirp->user_id; // Only the owner can update
+        return false;
     }
 
     /**
