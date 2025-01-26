@@ -11,6 +11,7 @@ class ChirpPolicy
     /**
      * Determine whether the user can view any models.
      */
+    
     public function viewAny(User $user, Chirp $chirp)
     {
         return $user->id === $chirp->user_id

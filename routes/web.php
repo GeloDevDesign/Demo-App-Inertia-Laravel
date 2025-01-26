@@ -15,6 +15,7 @@ Route::inertia('/welcome', 'Views/Welcome')->name('welcome')->middleware(['auth'
 
 
 
+
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'create', 'store','edit','update','destroy'])
     ->middleware(['auth', 'verified']);

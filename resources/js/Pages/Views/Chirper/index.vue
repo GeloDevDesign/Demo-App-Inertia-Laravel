@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from "vue";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import pagination from "../../Components/pagination.vue";
+
+dayjs.extend(relativeTime);
 
 const props = defineProps({
     chirps: Object, // The list of chirps is passed as a prop
@@ -35,7 +40,7 @@ const props = defineProps({
                         <th>{{ index + 1 }}</th>
                         <td>{{ message.user.name }}</td>
                         <td>{{ message.message }}</td>
-                        <td>{{ message.created_at }}</td>
+                        <td>{{ dayjs(message.created_at).fromNow() }}</td>
                         <td>
                             <Link
                                 class="btn btn-sm btn-primary btn-outline"

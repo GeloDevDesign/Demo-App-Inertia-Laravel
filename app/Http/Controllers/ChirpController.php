@@ -84,8 +84,13 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
-        Gate::authorize('update', $chirp);
+        // Gate::authorize('update', $chirp);
 
+        if (!$request->user()->can('update', $chirp)) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);

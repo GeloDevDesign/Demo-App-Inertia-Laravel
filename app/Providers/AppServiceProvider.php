@@ -23,9 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        Gate::define('update-chirp', [ChirpPolicy::class, 'update']);
-        Gate::define('edit-chirp', [ChirpPolicy::class, 'edit']);
-        Gate::define('delete-chirp', [ChirpPolicy::class, 'delete']);
+       
 
         Model::preventLazyLoading(!app()->isProduction());
 
