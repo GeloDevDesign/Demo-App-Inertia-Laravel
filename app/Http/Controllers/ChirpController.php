@@ -19,7 +19,13 @@ class ChirpController extends Controller
     {
         //
         return Inertia::render('Views/Chirper/index', [
-            'chirps' => Chirp::with('user:id,name')->latest()->get(),
+            'chirps' => Chirp::with('user:id,name')
+                ->latest()
+                ->get()
+                ->map(function ($chirp) {
+                    $chirp->canEdit = auth()->user()->can('update', $chirp); // Check policy
+                    return $chirp;
+                }),
         ]);
     }
 
@@ -64,7 +70,7 @@ class ChirpController extends Controller
         Gate::authorize('update', $chirp);
 
         // Render the edit page and pass the chirp data 
-        return Inertia::render('Views/Chirper/Edit', [
+        return Inertia::render('Views/Chirper/edit', [
             'chirp' => [
                 'id' => $chirp->id,
                 'message' => $chirp->message,

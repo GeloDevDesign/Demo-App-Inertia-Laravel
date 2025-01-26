@@ -28,13 +28,18 @@ const props = defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(message, index) in props.chirps" :key="message.id">
+                    <tr
+                        v-for="(message, index) in props.chirps"
+                        :key="message.id"
+                    >
                         <th>{{ index + 1 }}</th>
                         <td>{{ message.user.name }}</td>
                         <td>{{ message.message }}</td>
                         <td>{{ message.created_at }}</td>
                         <td>
+                            <!-- Use the canEdit field to show the Edit button -->
                             <Link
+                                v-if="message.canEdit"
                                 class="btn btn-sm btn-secondary"
                                 :href="route('chirps.edit', message.id)"
                             >
