@@ -18,7 +18,6 @@ const props = defineProps({
     <div>
         <div class="overflow-x-auto">
             <table class="table">
-                <!-- head -->
                 <thead>
                     <tr>
                         <th>#</th>
@@ -38,9 +37,8 @@ const props = defineProps({
                         <td>{{ message.message }}</td>
                         <td>{{ message.created_at }}</td>
                         <td>
-                            <!-- Use the canEdit field to show the Edit button -->
                             <Link
-                              
+                                v-if="message.canEdit"
                                 class="btn btn-sm btn-secondary"
                                 :href="route('chirps.edit', message.id)"
                             >
@@ -51,6 +49,6 @@ const props = defineProps({
                 </tbody>
             </table>
         </div>
-        <pagination :users="chirps" />
     </div>
+    <pagination :users="chirps" />
 </template>

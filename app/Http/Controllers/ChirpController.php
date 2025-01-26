@@ -23,6 +23,7 @@ class ChirpController extends Controller
                 ->where('user_id', auth()->id())
                 ->latest()
                 ->paginate(10)
+                
                
         ]);
     }
