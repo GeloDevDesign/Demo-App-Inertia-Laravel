@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChirpController;
@@ -8,6 +9,8 @@ use Inertia\Inertia;
 // Home page route
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
 Route::inertia('/welcome', 'Views/Welcome')->name('welcome')->middleware(['auth', 'verified']);
+Route::get('/logs',[LogsController::class,'index'])->name('logs')->middleware(['auth', 'verified']);
+
 
 // Route::get('organizations/{organization}/edit', [OrganizationsController::class, 'edit'])
 //     ->name('organizations.edit')
