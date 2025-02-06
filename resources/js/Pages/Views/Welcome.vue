@@ -37,7 +37,7 @@ defineProps({
                 sec
             </div>
         </div>
-
+ 
         <div class="flex gap-4">
             <timeCard class="bg-info rounded-md"  header="Time in" description="Press Arrow up to Time in" />
             <timeCard class="bg-success rounded-md" header=" Break In" description="Press Arrow up to Time in" />

@@ -55,8 +55,7 @@ class ChirpController extends Controller
     public function show(Request $request, Chirp $chirp)
     {
         //
-
-
+        
     }
 
     /**

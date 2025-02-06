@@ -14,7 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordC
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, CanResetPassword;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -66,4 +66,5 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordC
     {
         return $this->hasMany(Chirp::class);
     }
+
 }

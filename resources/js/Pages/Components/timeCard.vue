@@ -3,8 +3,7 @@
 const props = defineProps({
   header: String,
   description: String,
-})
-
+});
 
 </script>
 
@@ -31,7 +30,6 @@ const props = defineProps({
                 <div class="text-center text-white ">
                     <h1 class="font-bold text-3xl">{{ props.header }}</h1>
                     <p class="font-semibold text-lg">{{ props.description }}</p>
-
                 </div>
             </div>
         </div>

@@ -15,9 +15,7 @@ const store = userSideNavStore();
         <header class="fixed top-0 bottom-0 left-0">
             <Nav />
         </header>
-
         
-
         <div class="w-full mx-2">
             <div class="mt-2">
                 <slot />
